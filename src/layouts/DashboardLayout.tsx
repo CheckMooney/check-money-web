@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardHeader } from '../components/DashboardHeader';
+import DashboardHeader from '../components/DashboardHeader';
 
 export const DashboardLayout: React.FC = ({ children }) => {
   return (
