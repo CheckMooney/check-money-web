@@ -2,22 +2,18 @@ import { DefaultTheme } from 'styled-components';
 
 export const lightTheme: DefaultTheme = {
   colors: {
-    primary: '#3a36db',
-    secondary: '#0090ff',
-    base: '#ffffff',
-    danger: '#ea3a3d',
-    success: '#1ad598',
-    warning: '#f9b959',
+    bgPrimary: '#ffffff',
+    bgSecondary: '#e7e7e7',
+    textPrimary: '#030303',
+    textSecondary: '#606060',
   },
 };
 
 export const darkTheme: DefaultTheme = {
   colors: {
-    primary: '#3a36db',
-    secondary: '#0090ff',
-    base: '#06152b',
-    danger: '#ea3a3d',
-    success: '#1ad598',
-    warning: '#f9b959',
+    bgPrimary: '#212121',
+    bgSecondary: '#bcbcbc',
+    textPrimary: '#ffffff',
+    textSecondary: '#aaaaaa',
   },
 };
