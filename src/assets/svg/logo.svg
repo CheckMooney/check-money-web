@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#3a36db"/>
+      <stop offset="1" stop-color="#7c43f1"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#36dae9"/>
+      <stop offset="1" stop-color="#0090ff"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect transform="translate(-2005.175 -1366.806) rotate(158)" fill="#48cae4"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect transform="translate(-2005.175 -1366.806) rotate(158)" fill="#00b4d8"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect transform="translate(-2005.175 -1366.806) rotate(158)" fill="#caf0f8"/>
+    </clipPath>
+  </defs>
+  <rect transform="translate(73.932 293.88) rotate(-158)" fill="#ade8f4"/>
+  <rect transform="translate(0 145.253) rotate(-45)" fill="url(#linear-gradient)"/>
+  <rect transform="translate(346.824) rotate(45)" fill="url(#linear-gradient-2)"/>
+  <rect transform="translate(223.932 293.88) rotate(-158)" fill="#48cae4"/>
+  <path d="M36,0A36,36,0,0,1,72,36V236a36,36,0,0,1-72,0V36A36,36,0,0,1,36,0Z" transform="translate(250.825 266.908) rotate(158)" fill="#90e0ef"/>
+  <g transform="translate(2256 1633.714)" clip-path="url(#clip-path)">
+    <rect transform="translate(-2182.068 -1339.834) rotate(-158)" fill="#48cae4"/>
+  </g>
+  <rect transform="translate(400.825 266.908) rotate(158)" fill="#90e0ef"/>
+  <g transform="translate(2406 1633.714)" clip-path="url(#clip-path-2)">
+    <rect transform="translate(-2182.068 -1339.834) rotate(-158)" fill="#00b4d8"/>
+  </g>
+  <g transform="translate(-1923 -1325.12) rotate(180)" clip-path="url(#clip-path-3)">
+    <rect transform="translate(-2182.068 -1339.834) rotate(-158)" fill="#caf0f8"/>
+  </g>
+</svg>
