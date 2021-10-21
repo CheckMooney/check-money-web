@@ -13,12 +13,6 @@ export const MainRouter = () => {
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/login" exact>
-          <Login />
-        </Route>
-        <Route path="/register" exact>
-          <Register />
-        </Route>
         <Route path="/*">
           <NotFound />
         </Route>
