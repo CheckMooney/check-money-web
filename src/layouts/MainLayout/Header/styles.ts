@@ -16,12 +16,6 @@ export const Container = styled.div`
   justify-content: space-between;
   margin: 0 auto;
   height: 100%;
-
-  .logo {
-    display: block;
-    padding: 0 1rem;
-    cursor: pointer;
-  }
 `;
 
 export const NavigationContainer = styled.nav`
@@ -39,7 +33,7 @@ export const NavigationList = styled.ul`
 export const NavigationItem = styled(NavLink)`
   display: block;
   padding: 0 1rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 4rem;
 `;
 

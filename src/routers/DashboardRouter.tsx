@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
-import { DashboardLayout } from '../layouts/DashboardLayout';
+import DashboardLayout from '../layouts/DashboardLayout';
 import { Dashboard } from '../pages/Dashboard';
 import { Today } from '../pages/Today';
 
