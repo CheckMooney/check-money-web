@@ -14,6 +14,12 @@ export const GlobalStyle = createGlobalStyle`
     --color--bg-secondary: ${({ theme }) => theme.colors.bgSecondary};
     --color--text-primary: ${({ theme }) => theme.colors.textPrimary};
     --color--text-secondary: ${({ theme }) => theme.colors.textSecondary};
+    --color--text-third: ${({ theme }) => theme.colors.textThird};
+    --color--border-Primary: ${({ theme }) => theme.colors.borderPrimary};
+  }
+
+  * {
+    box-sizing: border-box;
   }
 
   body {

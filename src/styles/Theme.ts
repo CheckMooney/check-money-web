@@ -3,17 +3,21 @@ import { DefaultTheme } from 'styled-components';
 export const lightTheme: DefaultTheme = {
   colors: {
     bgPrimary: '#ffffff',
-    bgSecondary: '#e7e7e7',
-    textPrimary: '#030303',
-    textSecondary: '#606060',
+    bgSecondary: '#fafafa',
+    textPrimary: '#202020',
+    textSecondary: '#333333',
+    textThird: '#999999',
+    borderPrimary: '#dddddd',
   },
 };
 
 export const darkTheme: DefaultTheme = {
   colors: {
-    bgPrimary: '#212121',
-    bgSecondary: '#bcbcbc',
+    bgPrimary: '#171717',
+    bgSecondary: '#282828',
     textPrimary: '#ffffff',
-    textSecondary: '#aaaaaa',
+    textSecondary: 'rgba(255,255,255,0.89)',
+    textThird: 'rgba(255,255,255,0.66)',
+    borderPrimary: '#dddddd',
   },
 };

@@ -7,6 +7,8 @@ declare module 'styled-components' {
       bgSecondary: string;
       textPrimary: string;
       textSecondary: string;
+      textThird: string;
+      borderPrimary: string;
     };
   }
 }
