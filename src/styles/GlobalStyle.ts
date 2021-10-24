@@ -41,15 +41,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .container{
-    max-width : 75rem;
+    width:100%;
+    padding: 0 1rem;
     
-    @media screen and (max-width: 64rem){
-      max-width: 64rem;
+    @media screen and (min-width: 768px){
+      max-width: 768px;
+      padding: 0 1.5rem;
     }
-
-    @media screen and (max-width: 50rem){
-      max-width: 50rem;
-      padding: 0 1rem;
+    @media screen and (min-width: 1280px){
+      max-width: 1280px;
+      padding: 0 2.5rem;
     }
   }
 

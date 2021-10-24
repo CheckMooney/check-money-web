@@ -19,8 +19,9 @@ export const Container = styled.div`
 `;
 
 export const NavigationContainer = styled.nav`
-  @media screen and (max-width: 50rem) {
-    visibility: hidden;
+  visibility: hidden;
+  @media screen and (min-width: 768px) {
+    visibility: visible;
   }
 `;
 
@@ -35,18 +36,23 @@ export const NavigationItem = styled(NavLink)`
   padding: 0 1rem;
   font-weight: 500;
   line-height: 4rem;
+
+  &:hover {
+    background-color: var(--color--bg-secondary);
+    border-bottom: 1px solid var(--color--primary);
+  }
 `;
 
 export const MobileMenuButton = styled.button`
-  display: none;
-  padding: 0 1rem;
-  @media screen and (max-width: 50rem) {
-    display: inline-block;
+  display: block;
+  color: var(--color--text-primary);
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
 
 export const MobileNavigationContainer = styled.div<{ isOpen: boolean }>`
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -57,22 +63,31 @@ export const MobileNavigationContainer = styled.div<{ isOpen: boolean }>`
   background-color: var(--color--bg-primary);
   transform: translateX(${(props) => (props.isOpen ? '0' : '110vw')});
   transition: all 0.2s ease-in;
-  @media screen and (max-width: 50rem) {
-    display: block;
-  }
-  .mobile-navigation {
-    padding: 1rem 1.5rem;
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
 
+export const MobileNavigationHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 4rem;
+  padding: 0 1rem;
+`;
+
+export const MobileNavigationBody = styled.nav`
+  padding: 1rem;
+`;
+
 export const MobileNavigationList = styled.ul`
-  padding: 2rem 0;
+  padding: 0;
 `;
 
 export const MobileNavigationItem = styled(NavLink)`
   display: block;
-  padding: 2rem 0;
   font-size: 1.5rem;
-  font-family: 500;
-  border-bottom: 1px solid var(--color--text-primary);
+  padding: 1rem 0;
 `;

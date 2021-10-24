@@ -6,11 +6,15 @@ import {
   MobileNavigationContainer,
   MobileNavigationList,
   MobileNavigationItem,
+  MobileNavigationHeader,
+  MobileNavigationBody,
 } from './styles';
+import Logo from '../../../components/Logo';
 
 export const MobileNavigation = () => {
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   let location = useLocation();
+
   useEffect(() => {
     setIsOpenMobileMenu(false);
   }, [location]);
@@ -27,30 +31,32 @@ export const MobileNavigation = () => {
       to: 'auth/register',
     },
   ];
+
   return (
     <>
       <MobileMenuButton onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}>
         <IoMenuOutline size={32} />
       </MobileMenuButton>
       <MobileNavigationContainer isOpen={isOpenMobileMenu}>
-        <div className="mobile-navigation">
-          <div style={{ display: 'flex', flexDirection: 'row-reverse' }}>
-            <button onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}>
-              <IoCloseOutline size={32} />
-            </button>
-          </div>
-          <nav>
-            <MobileNavigationList>
-              {navigationItem.map((item, i) => (
-                <li key={i}>
-                  <MobileNavigationItem to={item.to}>
-                    {item.label}
-                  </MobileNavigationItem>
-                </li>
-              ))}
-            </MobileNavigationList>
-          </nav>
-        </div>
+        <MobileNavigationHeader>
+          <Logo />
+          <MobileMenuButton
+            onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
+          >
+            <IoCloseOutline size={32} />
+          </MobileMenuButton>
+        </MobileNavigationHeader>
+        <MobileNavigationBody>
+          <MobileNavigationList>
+            {navigationItem.map((item, i) => (
+              <li key={i}>
+                <MobileNavigationItem to={item.to}>
+                  {item.label}
+                </MobileNavigationItem>
+              </li>
+            ))}
+          </MobileNavigationList>
+        </MobileNavigationBody>
       </MobileNavigationContainer>
     </>
   );
