@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     --color--text-primary: ${({ theme }) => theme.colors.textPrimary};
     --color--text-secondary: ${({ theme }) => theme.colors.textSecondary};
     --color--text-third: ${({ theme }) => theme.colors.textThird};
-    --color--border-Primary: ${({ theme }) => theme.colors.borderPrimary};
+    --color--border-primary: ${({ theme }) => theme.colors.borderPrimary};
   }
 
   * {
