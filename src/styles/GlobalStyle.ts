@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   .container{
     width:100%;
     padding: 0 1rem;
-    
+    margin: 0 auto;
     @media screen and (min-width: 768px){
       max-width: 768px;
       padding: 0 1.5rem;
@@ -54,4 +54,8 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .active-sidebar {
+    background-color: rgba(0, 0, 0, 0.05);
+    font-weight: 400;
+  }
 `;
