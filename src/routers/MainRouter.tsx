@@ -1,18 +1,17 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { HomePage, NotFoundPage } from '../pages/common';
 import MainLayout from '../layouts/MainLayout';
-import Home from '../pages/Home';
-import NotFound from '../pages/NotFound';
 
 export const MainRouter = () => {
   return (
     <MainLayout>
       <Switch>
         <Route path="/" exact>
-          <Home />
+          <HomePage />
         </Route>
         <Route path="/*">
-          <NotFound />
+          <NotFoundPage />
         </Route>
       </Switch>
     </MainLayout>

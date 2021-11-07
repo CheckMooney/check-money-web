@@ -1,21 +1,39 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { MainRouter } from './routers/MainRouter';
 import { DashboardRouter } from './routers/DashboardRouter';
 import { AuthRouter } from './routers/AuthRouter';
+import { getAccessToken } from 'storages';
+import { requestGetSelfProfile } from 'services/requests';
+import { useUserContext } from 'contexts/UserContext';
 
 function App() {
+  const { isLoggedIn, login, logout } = useUserContext();
+
+  useEffect(() => {
+    const accessToken = getAccessToken();
+    if (!accessToken) return;
+    (async () => {
+      try {
+        await requestGetSelfProfile(accessToken);
+        login(accessToken);
+      } catch (error) {
+        logout();
+      }
+    })();
+  }, [login, logout]);
+
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/dashboard">
-          <DashboardRouter />
+          {isLoggedIn ? <DashboardRouter /> : <Redirect to="/" />}
         </Route>
         <Route path="/auth">
-          <AuthRouter />
+          {!isLoggedIn ? <AuthRouter /> : <Redirect to="/dashboard" />}
         </Route>
         <Route path="/">
-          <MainRouter />
+          {!isLoggedIn ? <MainRouter /> : <Redirect to="/dashboard" />}
         </Route>
       </Switch>
     </BrowserRouter>

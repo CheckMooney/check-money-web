@@ -1,9 +1,7 @@
 import React from 'react';
 import AuthLayout from '../layouts/AuthLayout';
-import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
-import { FindPassword } from '../pages/FindPassword';
-import { Login } from '../pages/Login';
-import { Register } from '../pages/Register';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { FindPasswordPage, LoginPage, RegisterPage } from 'pages/auth';
 
 export const AuthRouter = () => {
   let { path } = useRouteMatch();
@@ -11,16 +9,13 @@ export const AuthRouter = () => {
     <AuthLayout>
       <Switch>
         <Route path={`${path}/register`} exact>
-          <Register />
+          <RegisterPage />
         </Route>
         <Route path={`${path}/login`} exact>
-          <Login />
+          <LoginPage />
         </Route>
         <Route path={`${path}/find-password`} exact>
-          <FindPassword />
-        </Route>
-        <Route path={`${path}/*`}>
-          <Redirect to={path} />
+          <FindPasswordPage />
         </Route>
       </Switch>
     </AuthLayout>

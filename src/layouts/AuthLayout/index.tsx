@@ -1,10 +1,14 @@
 import React from 'react';
-import AuthLayoutContainer from './AuthLayoutContainer';
+import * as Styled from './styles';
 
 const AuthLayout: React.FC = ({ children }) => {
   return (
     <main>
-      <AuthLayoutContainer>{children}</AuthLayoutContainer>
+      <Styled.AuthLayoutWrapper>
+        <Styled.AuthLayoutInnerWrapper>
+          {children}
+        </Styled.AuthLayoutInnerWrapper>
+      </Styled.AuthLayoutWrapper>
     </main>
   );
 };

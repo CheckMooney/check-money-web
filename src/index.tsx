@@ -5,12 +5,23 @@ import App from './App';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { lightTheme } from './styles/Theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import RegisterContextProvider from './contexts/RegisterContext';
+import UserContextProvider from 'contexts/UserContext';
+
+const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={lightTheme}>
-      <GlobalStyle />
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <UserContextProvider>
+          <RegisterContextProvider>
+            <GlobalStyle />
+            <App />
+          </RegisterContextProvider>
+        </UserContextProvider>
+      </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
