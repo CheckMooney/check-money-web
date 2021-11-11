@@ -38,10 +38,11 @@ export const ConfirmCodeForm = () => {
   return (
     <AuthForm
       title="이메일 인증"
-      subTitle={`메일함(${currentEmail})로 도착한 인증번호를 입력해주세요.`}
-      footerContent="이미 가입하셨나요?"
-      footerLink="/auth/login"
-      footerLabel="로그인"
+      subTitle={`${currentEmail} 으로 6자리 인증번호가 전송되었습니다.`}
+      footerContent="인증번호를 받지 못하셨나요?"
+      footerLink={`/auth/resend-code?email=${currentEmail}`}
+      footerLinkNewTab
+      footerLabel="인증번호 재전송"
       errorMsg={error?.response?.data?.message}
     >
       <form onSubmit={onSubmit}>
@@ -60,7 +61,7 @@ export const ConfirmCodeForm = () => {
         />
         <Button
           disabled={isLoading || !isDirty || !isValid}
-          aria-label="이메일로 가입하기"
+          aria-label="인증코드 인증"
           type="submit"
           buttonType="primary"
           fullWidth

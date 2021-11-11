@@ -33,7 +33,9 @@ export const NotFoundPage = () => {
       <NotFoundContainer>
         <NotFoundImage src={notFoundImage} alt="찾을 수 없는 페이지" />
         <h2>존재하지 않는 페이지입니다.</h2>
-        <TextLink to="/" label="홈페이지로 돌아가기" type="primary" />
+        <TextLink to="/" type="primary">
+          홈페이지로 돌아가기
+        </TextLink>
       </NotFoundContainer>
     </div>
   );

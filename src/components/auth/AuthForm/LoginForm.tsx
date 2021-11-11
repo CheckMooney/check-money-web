@@ -87,7 +87,7 @@ export const LoginForm = () => {
         </Button>
       </form>
       <Styled.FindPasswordLinkWrapper>
-        <TextLink to="/auth/find-password" label="비밀번호를 잊어버리셨나요?" />
+        <TextLink to="/auth/find-password">비밀번호를 잊어버리셨나요?</TextLink>
       </Styled.FindPasswordLinkWrapper>
     </AuthForm>
   );

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Logo, Seperator, TextLink } from 'components/common';
 import { GoogleLoginButton } from '../OAuth';
-import * as Styled from './styles';
 import { IoAlertCircleSharp } from 'react-icons/io5';
+import * as Styled from './styles';
 
 interface AuthFormProps {
   title: string;
   subTitle?: string;
   footerContent: string;
   footerLink: string;
+  footerLinkNewTab?: boolean;
   footerLabel: string;
   oauth?: boolean;
   errorMsg?: string;
@@ -19,6 +20,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
   subTitle,
   footerContent,
   footerLink,
+  footerLinkNewTab,
   footerLabel,
   oauth,
   errorMsg,
@@ -47,7 +49,13 @@ export const AuthForm: React.FC<AuthFormProps> = ({
       <Seperator />
       <Styled.AuthFormFooter>
         {footerContent}{' '}
-        <TextLink to={footerLink} label={footerLabel} type="primary" />
+        <TextLink
+          to={footerLink}
+          target={footerLinkNewTab ? '_blank' : '_self'}
+          linkType="primary"
+        >
+          {footerLabel}
+        </TextLink>
       </Styled.AuthFormFooter>
     </Styled.AuthFormWrapper>
   );
