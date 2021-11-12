@@ -3,12 +3,12 @@ import { Link, LinkProps } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface TextLinkProps extends LinkProps {
-  linkType?: string;
+  color?: string;
 }
 
 const StyledLink = styled(Link)<TextLinkProps>`
   color: ${(props) =>
-    props.linkType === 'primary'
+    props.color === 'primary'
       ? 'var(--color--primary)'
       : ' var(--color--text-secondary)'};
 

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRegisterContext } from 'contexts/RegisterContext';
 import { Button } from 'components/common';
 import { AuthForm, AuthFormInput } from '.';
 import { EMAIL_REGEX } from 'constants/regex';
 import { useConfirmEmailMutation } from 'services/queries/auth';
+import useErrorMessage from 'hooks/useErrorMessage';
 
 interface ConfirmEmailFormData {
   email: string;
 }
 
 export const ConfirmEmailForm = () => {
-  const { isLoading, error, mutate } = useConfirmEmailMutation();
   const { confirmEmail } = useRegisterContext();
+  const { errorMessage, handleError } = useErrorMessage();
+  const {
+    isLoading,
+    error,
+    isError,
+    mutate: confirmEmailMutation,
+  } = useConfirmEmailMutation();
   const {
     register,
     handleSubmit,
@@ -24,16 +31,22 @@ export const ConfirmEmailForm = () => {
     },
   });
 
-  const onSubmit = handleSubmit(({ email }: ConfirmEmailFormData) => {
-    mutate(
+  useEffect(() => {
+    if (isError) {
+      handleError(error);
+    }
+  }, [isError, error, handleError]);
+
+  const onSubmit = ({ email }: ConfirmEmailFormData) => {
+    confirmEmailMutation(
       { email },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           confirmEmail(email);
         },
       },
     );
-  });
+  };
 
   return (
     <AuthForm
@@ -41,10 +54,10 @@ export const ConfirmEmailForm = () => {
       footerContent="이미 가입하셨나요?"
       footerLink="/auth/login"
       footerLabel="로그인"
-      errorMsg={error?.response?.data?.message}
+      errorMsg={errorMessage}
       oauth
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <AuthFormInput
           id="email"
           label="이메일"

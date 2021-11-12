@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRegisterContext } from 'contexts/RegisterContext';
 import { Button } from 'components/common';
@@ -6,6 +6,7 @@ import { useHistory } from 'react-router';
 import { AuthForm, AuthFormInput, PasswordValidaton } from '.';
 import { PASSWORD_REGEX } from 'constants/regex';
 import { useRegisterMutation } from 'services/queries/auth';
+import useErrorMessage from 'hooks/useErrorMessage';
 
 interface RegisterFormData {
   name: string;
@@ -14,8 +15,9 @@ interface RegisterFormData {
 
 export const RegisterForm = () => {
   const history = useHistory();
-  const { isLoading, error, mutate } = useRegisterMutation();
   const { currentEmail, setInitialState } = useRegisterContext();
+  const { errorMessage, handleError } = useErrorMessage();
+  const { isLoading, isError, error, mutate } = useRegisterMutation();
   const {
     register,
     handleSubmit,
@@ -28,9 +30,16 @@ export const RegisterForm = () => {
       password: '',
     },
   });
+
+  useEffect(() => {
+    if (isError) {
+      handleError(error);
+    }
+  }, [isError, error, handleError]);
+
   const watchPassword = watch('password');
 
-  const onSubmit = handleSubmit(({ name, password }: RegisterFormData) => {
+  const onSubmit = ({ name, password }: RegisterFormData) => {
     mutate(
       {
         email: currentEmail,
@@ -38,13 +47,13 @@ export const RegisterForm = () => {
         password,
       },
       {
-        onSuccess: (data) => {
+        onSuccess: () => {
           setInitialState();
           history.push('/auth/login');
         },
       },
     );
-  });
+  };
 
   return (
     <AuthForm
@@ -52,9 +61,9 @@ export const RegisterForm = () => {
       footerContent="이미 가입하셨나요?"
       footerLink="/auth/login"
       footerLabel="로그인"
-      errorMsg={error?.response?.data?.message}
+      errorMsg={errorMessage}
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <AuthFormInput
           id="email"
           label="이메일"

@@ -43,8 +43,10 @@ export const GoogleLoginButton = () => {
   ) => {
     try {
       if ('tokenId' in response) {
-        const { token } = await reqeustLoginGoogle(response.tokenId);
-        login(token);
+        const { access_token, refresh_token } = await reqeustLoginGoogle(
+          response.tokenId,
+        );
+        login(refresh_token, access_token);
       }
     } catch (error) {
       console.log(error);

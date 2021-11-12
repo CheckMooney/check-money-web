@@ -76,7 +76,6 @@ export const AuthFormError = styled.div`
   align-items: center;
   margin-bottom: 1.25rem;
   font-size: 0.875rem;
-  line-height: 0.875rem;
   color: var(--color--danger);
   svg {
     margin-right: 0.25rem;

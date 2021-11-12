@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import welcomeImage from '../../assets/jpg/welcome.jpg';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useSnackbarContext } from 'contexts/SnackbarContext';
 
 const WelcomeContainer = styled.div`
   height: calc(100vh - 4rem);
@@ -39,6 +40,7 @@ const WelcomeContainer = styled.div`
 `;
 
 export const HomePage = () => {
+  const { pushSnackbarMessage } = useSnackbarContext();
   return (
     <div>
       <WelcomeContainer>
@@ -47,7 +49,9 @@ export const HomePage = () => {
           <br />
           체크머니와 함께 효율적으로
         </h1>
-        <Link to="/auth/login">지금 시작하기</Link>
+        <button onClick={() => pushSnackbarMessage('123123')}>
+          지금 시작하기
+        </button>
       </WelcomeContainer>
     </div>
   );

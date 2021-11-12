@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 
-interface RegisterState {
+interface Value {
   isEmailConfirmed: boolean;
   isCodeConfirmed: boolean;
   currentEmail: string;
@@ -9,19 +9,22 @@ interface RegisterState {
   setInitialState: () => void;
 }
 
-const initialState: RegisterState = {
+interface Props {
+  children: React.ReactNode;
+}
+
+export const RegisterContext = createContext<Value>({
   isEmailConfirmed: false,
   isCodeConfirmed: false,
   currentEmail: '',
   confirmEmail: () => {},
   confirmCode: () => {},
   setInitialState: () => {},
-};
+});
 
-export const RegisterContext = createContext<RegisterState>(initialState);
 export const useRegisterContext = () => useContext(RegisterContext);
 
-const RegisterContextProvider: React.FC = ({ children }) => {
+export const RegisterContextProvider = ({ children }: Props) => {
   const [isEmailConfirmed, setIsEmailConfirmed] = useState<boolean>(false);
   const [isCodeConfirmed, setIsCodeConfirmed] = useState<boolean>(false);
   const [currentEmail, setCurrentEmail] = useState<string>('');
@@ -56,5 +59,3 @@ const RegisterContextProvider: React.FC = ({ children }) => {
     </RegisterContext.Provider>
   );
 };
-
-export default RegisterContextProvider;

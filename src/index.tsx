@@ -6,8 +6,8 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
 import { lightTheme } from './styles/Theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import RegisterContextProvider from './contexts/RegisterContext';
-import UserContextProvider from 'contexts/UserContext';
+import { RegisterContextProvider } from './contexts/RegisterContext';
+import { UserContextProvider } from 'contexts/UserContext';
 
 const queryClient = new QueryClient();
 

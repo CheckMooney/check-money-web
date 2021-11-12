@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from 'components/common';
 import { useForm } from 'react-hook-form';
 import { useRegisterContext } from 'contexts/RegisterContext';
 import { AuthForm, AuthFormInput } from '.';
 import { CONFIRM_CODE_REGEX } from 'constants/regex';
 import { useConfirmCodeMutation } from 'services/queries/auth';
+import useErrorMessage from 'hooks/useErrorMessage';
 
 interface ConfirmCodeFormData {
   code: string;
 }
 
 export const ConfirmCodeForm = () => {
-  const { isLoading, error, mutate } = useConfirmCodeMutation();
   const { currentEmail, confirmCode } = useRegisterContext();
+  const { errorMessage, handleError } = useErrorMessage();
+  const {
+    mutate: confirmCodeMutation,
+    isLoading,
+    isError,
+    error,
+  } = useConfirmCodeMutation();
   const {
     register,
     handleSubmit,
@@ -24,8 +31,14 @@ export const ConfirmCodeForm = () => {
     },
   });
 
-  const onSubmit = handleSubmit(({ code }: ConfirmCodeFormData) => {
-    mutate(
+  useEffect(() => {
+    if (isError) {
+      handleError(error);
+    }
+  }, [isError, error, handleError]);
+
+  const onSubmit = ({ code }: ConfirmCodeFormData) => {
+    confirmCodeMutation(
       { email: currentEmail, code },
       {
         onSuccess: () => {
@@ -33,7 +46,7 @@ export const ConfirmCodeForm = () => {
         },
       },
     );
-  });
+  };
 
   return (
     <AuthForm
@@ -43,9 +56,9 @@ export const ConfirmCodeForm = () => {
       footerLink={`/auth/resend-code?email=${currentEmail}`}
       footerLinkNewTab
       footerLabel="인증번호 재전송"
-      errorMsg={error?.response?.data?.message}
+      errorMsg={errorMessage}
     >
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <AuthFormInput
           id="code"
           type="text"

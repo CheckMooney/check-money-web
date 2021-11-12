@@ -4,5 +4,6 @@ export const API_URL = {
   REGISTER: '/auth/join',
   LOGIN: '/auth/login/email',
   LOGIN_GOOGLE: '/auth/login/google',
+  SILENT_REFRESH: '/auth/refresh',
   GET_SELF_PROFILE: '',
 };

@@ -1,38 +1,54 @@
 import { createContext, useContext, useState } from 'react';
-import { setAccessToken } from 'storages';
+import {
+  setAccessToken,
+  setAccessTokenExpiredAt,
+  setRefreshToken,
+} from 'storages';
 
-export interface UserState {
+export interface Value {
   isLoggedIn: boolean;
-  login: (accessToken: string) => void;
+  login: (refreshToken: string, accessToken: string) => void;
   logout: () => void;
+  silentRefresh: () => void;
 }
 
-const UserContext = createContext<UserState>({
+export interface Props {
+  children: React.ReactNode;
+}
+
+const UserContext = createContext<Value>({
   isLoggedIn: false,
   login: () => {},
   logout: () => {},
+  silentRefresh: () => {},
 });
 
 export const useUserContext = () => useContext(UserContext);
 
-const UserContextProvider: React.FC = ({ children }) => {
+export const UserContextProvider = ({ children }: Props) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  const login = (accessToken: string) => {
+  const login = (refreshToken: string, accessToken: string) => {
     setAccessToken(accessToken);
+    setRefreshToken(refreshToken);
+    setAccessTokenExpiredAt();
     setIsLoggedIn(true);
   };
 
   const logout = () => {
     setAccessToken('');
+    setRefreshToken('');
+    setAccessTokenExpiredAt('');
     setIsLoggedIn(false);
   };
 
+  const silentRefresh = () => {
+    setIsLoggedIn(true);
+  };
+
   return (
-    <UserContext.Provider value={{ isLoggedIn, login, logout }}>
+    <UserContext.Provider value={{ isLoggedIn, login, logout, silentRefresh }}>
       {children}
     </UserContext.Provider>
   );
 };
-
-export default UserContextProvider;

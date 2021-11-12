@@ -3,25 +3,22 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { MainRouter } from './routers/MainRouter';
 import { DashboardRouter } from './routers/DashboardRouter';
 import { AuthRouter } from './routers/AuthRouter';
-import { getAccessToken } from 'storages';
 import { requestGetSelfProfile } from 'services/requests';
 import { useUserContext } from 'contexts/UserContext';
 
 function App() {
-  const { isLoggedIn, login, logout } = useUserContext();
+  const { isLoggedIn, silentRefresh, logout } = useUserContext();
 
   useEffect(() => {
-    const accessToken = getAccessToken();
-    if (!accessToken) return;
     (async () => {
       try {
-        await requestGetSelfProfile(accessToken);
-        login(accessToken);
+        await requestGetSelfProfile();
+        silentRefresh();
       } catch (error) {
         logout();
       }
     })();
-  }, [login, logout]);
+  }, [silentRefresh, logout]);
 
   return (
     <BrowserRouter>

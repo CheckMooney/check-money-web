@@ -1,7 +1,7 @@
 import React from 'react';
 import { Logo, Seperator, TextLink } from 'components/common';
 import { GoogleLoginButton } from '../OAuth';
-import { IoAlertCircleSharp } from 'react-icons/io5';
+import { IoIosAlert } from 'react-icons/io';
 import * as Styled from './styles';
 
 interface AuthFormProps {
@@ -41,7 +41,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
       )}
       {errorMsg && (
         <Styled.AuthFormError>
-          <IoAlertCircleSharp size={16} />
+          <IoIosAlert size={16} />
           {errorMsg}
         </Styled.AuthFormError>
       )}
@@ -52,7 +52,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
         <TextLink
           to={footerLink}
           target={footerLinkNewTab ? '_blank' : '_self'}
-          linkType="primary"
+          color="primary"
         >
           {footerLabel}
         </TextLink>

@@ -6,14 +6,14 @@ import {
   requestLogin,
   requestRegister,
 } from 'services/requests';
+import { ResponseData } from 'types';
 import {
   ConfirmCodeVariables,
   ConfirmEmailVariables,
   LoginData,
   LoginVariables,
   RegisterVariables,
-} from 'types/auth.type';
-import { CommonData } from 'types/common.type';
+} from 'types/auth';
 
 export const useLoginMutation = () => {
   return useMutation<LoginData, AxiosError, LoginVariables>((variables) =>
@@ -22,19 +22,19 @@ export const useLoginMutation = () => {
 };
 
 export const useConfirmEmailMutation = () => {
-  return useMutation<CommonData, AxiosError, ConfirmEmailVariables>(
+  return useMutation<ResponseData, AxiosError, ConfirmEmailVariables>(
     (variables) => requestConfirmEmail(variables),
   );
 };
 
 export const useConfirmCodeMutation = () => {
-  return useMutation<CommonData, AxiosError, ConfirmCodeVariables>(
+  return useMutation<ResponseData, AxiosError, ConfirmCodeVariables>(
     (variables) => requestConfirmCode(variables),
   );
 };
 
 export const useRegisterMutation = () => {
-  return useMutation<CommonData, AxiosError, RegisterVariables>((variables) =>
+  return useMutation<ResponseData, AxiosError, RegisterVariables>((variables) =>
     requestRegister(variables),
   );
 };
