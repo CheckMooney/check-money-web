@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { CSSProperties } from 'styled-components';
 
 export const TopBarContainer = styled.header`
   width: 100%;
@@ -6,7 +6,7 @@ export const TopBarContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2.4rem;
+  padding: 0 2rem;
 
   background-color: var(--color--bg-secondary);
   color: var(--color--text-secondary);
@@ -22,18 +22,19 @@ export const TopBarInnerContainer = styled.div`
 `;
 
 export const TopBarLeft = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-gap: 0.5rem;
+  display: flex;
 `;
 
-export const TopBarRight = styled.div``;
+export const TopBarRight = styled.div`
+  display: flex;
+`;
 
-export const TopBarButton = styled.button`
+export const TopBarButton = styled.button<CSSProperties>`
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  margin-right: ${({ marginRight }) => marginRight};
   cursor: pointer;
   border-radius: 0.25rem;
   color: #484b4c;

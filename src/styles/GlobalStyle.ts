@@ -32,10 +32,13 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     border: 0;
     padding: 0;
+    font-size: 1rem;
+    color: var(--color--text-primary);
     background-color: transparent;
+    cursor:pointer;
   }
 
-  a{
+  a {
     text-decoration:none;
     color:inherit;
   }

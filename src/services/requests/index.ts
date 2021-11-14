@@ -36,8 +36,7 @@ privateClient.interceptors.request.use(
       // accessToken이 유효하지 않은 경우
       const {
         data: { access_token: newAccessToken, refresh_token: newRefreshToken },
-      } = await axios.post<SilentRefreshData>(API_URL.SILENT_REFRESH, {
-        access_token: accessToken,
+      } = await publicClient.post<SilentRefreshData>(API_URL.SILENT_REFRESH, {
         refresh_token: refreshToken,
       });
       setRefreshToken(newRefreshToken);

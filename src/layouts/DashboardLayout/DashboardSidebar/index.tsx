@@ -1,13 +1,14 @@
 import React from 'react';
 import {
+  IoAddOutline,
   IoCalendarNumberOutline,
   IoCalendarOutline,
-  IoFileTray,
 } from 'react-icons/io5';
 import {
   DashboardSidebarContainer,
-  DashboardSidebarItem,
+  SidebarLink,
   DashboardSidebarList,
+  AddAccountButton,
 } from './styles';
 
 interface IDashboardSidebarProps {
@@ -20,12 +21,6 @@ const DashboardSidebar: React.FC<IDashboardSidebarProps> = ({
   toggoleOpen,
 }) => {
   const sidebarItems = [
-    {
-      to: '/dashboard',
-      icon: IoFileTray,
-      iconColor: '#88ADE6',
-      label: '대시보드',
-    },
     {
       to: '/dashboard/today',
       icon: IoCalendarNumberOutline,
@@ -45,19 +40,24 @@ const DashboardSidebar: React.FC<IDashboardSidebarProps> = ({
         <DashboardSidebarList>
           {sidebarItems.map((item, index) => (
             <li key={index}>
-              <DashboardSidebarItem
-                to={item.to}
-                activeClassName="active-sidebar"
-              >
+              <SidebarLink to={item.to} activeClassName="active-sidebar">
                 <item.icon
                   className="item-icon"
                   color={item.iconColor}
-                  size={24}
+                  size={20}
                 />
                 <span className="item-label">{item.label}</span>
-              </DashboardSidebarItem>
+              </SidebarLink>
             </li>
           ))}
+        </DashboardSidebarList>
+        <DashboardSidebarList>
+          <li>
+            <AddAccountButton>
+              <span>나의 계좌</span>
+              <IoAddOutline size={20} />
+            </AddAccountButton>
+          </li>
         </DashboardSidebarList>
       </div>
     </DashboardSidebarContainer>

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiMenuFill, RiHomeLine } from 'react-icons/ri';
+import { IoAddOutline, IoPersonCircle } from 'react-icons/io5';
 import { useHistory } from 'react-router';
 import {
   TopBarButton,
@@ -8,6 +9,7 @@ import {
   TopBarLeft,
   TopBarRight,
 } from './styles';
+import { AddTransactionModal } from 'components/Modal/AddTransactionModal/AddTransactionModal';
 
 interface IDashboardHeaderProps {
   toggleOpen: () => void;
@@ -15,19 +17,35 @@ interface IDashboardHeaderProps {
 
 const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
   const history = useHistory();
+
+  const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+
   return (
     <TopBarContainer>
       <TopBarInnerContainer>
         <TopBarLeft>
-          <TopBarButton onClick={toggleOpen}>
+          <TopBarButton onClick={toggleOpen} marginRight="1rem">
             <RiMenuFill size={24} />
           </TopBarButton>
           <TopBarButton onClick={() => history.push('/dashboard')}>
             <RiHomeLine size={24} />
           </TopBarButton>
         </TopBarLeft>
-        <TopBarRight>정보</TopBarRight>
+        <TopBarRight>
+          <TopBarButton
+            marginRight="1rem"
+            onClick={() => setAddModalOpen(true)}
+          >
+            <IoAddOutline size={24} />
+          </TopBarButton>
+          <TopBarButton>
+            <IoPersonCircle size={24} />
+          </TopBarButton>
+        </TopBarRight>
       </TopBarInnerContainer>
+      {addModalOpen && (
+        <AddTransactionModal onClose={() => setAddModalOpen(false)} />
+      )}
     </TopBarContainer>
   );
 };
