@@ -1,14 +1,8 @@
 import 'styled-components';
+import { defaultTheme } from './Theme';
+
+type StyledDefaultTheme = typeof defaultTheme;
 
 declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      bgPrimary: string;
-      bgSecondary: string;
-      textPrimary: string;
-      textSecondary: string;
-      textThird: string;
-      borderPrimary: string;
-    };
-  }
+  export interface DefaultTheme extends StyledDefaultTheme {}
 }

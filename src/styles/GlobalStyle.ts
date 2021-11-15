@@ -4,61 +4,62 @@ import { reset } from 'styled-reset';
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  :root {
-    --color--primary: #3a36db;
-    --color--secondary: #0090ff;
-    --color--danger: #ea3a3d;
-    --color--success: #1ad598;
-    --color--warning: #f9b959;
-    --color--bg-primary: ${({ theme }) => theme.colors.bgPrimary};
-    --color--bg-secondary: ${({ theme }) => theme.colors.bgSecondary};
-    --color--text-primary: ${({ theme }) => theme.colors.textPrimary};
-    --color--text-secondary: ${({ theme }) => theme.colors.textSecondary};
-    --color--text-third: ${({ theme }) => theme.colors.textThird};
-    --color--border-primary: ${({ theme }) => theme.colors.borderPrimary};
-  }
-
   * {
+    font-size: 100%;
     box-sizing: border-box;
   }
 
   body {
     font-family: Helvetica, Arial, Roboto, sans-serif;
-    background-color: var(--color--bg-primary);
-    color: var(--color--text-primary);
+    background-color: ${({ theme }) => theme.color.background.base};
+    color: ${({ theme }) => theme.color.text.base};
   }
 
   button {
-    margin: 0;
-    border: 0;
+    border: none;
+    outline: none;
     padding: 0;
-    font-size: 1rem;
-    color: var(--color--text-primary);
+    color: ${({ theme }) => theme.color.text.base};
     background-color: transparent;
-    cursor:pointer;
+    cursor: pointer;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  textarea {
+    resize: none;
   }
 
   a {
-    text-decoration:none;
-    color:inherit;
+    all: unset;
+    color: ${({ theme }) => theme.color.text.base};
+  }
+  a:link {
+    text-decoration: none;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:active {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+    cursor: pointer;
   }
 
-  .container{
-    width:100%;
-    padding: 0 1rem;
-    margin: 0 auto;
-    @media screen and (min-width: 768px){
-      max-width: 768px;
-      padding: 0 1.5rem;
-    }
-    @media screen and (min-width: 1280px){
-      max-width: 1280px;
-      padding: 0 2.5rem;
-    }
-  }
-
-  .active-sidebar {
-    background-color: rgba(0, 0, 0, 0.05);
-    font-weight: 400;
+  a, button {
+    -webkit-tap-highlight-color: transparent;
   }
 `;
