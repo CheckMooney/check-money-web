@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
 import {
   requestConfirmCode,
@@ -6,7 +5,6 @@ import {
   requestLogin,
   requestRegister,
 } from 'services/requests';
-import { ResponseData } from 'types';
 import {
   ConfirmCodeVariables,
   ConfirmEmailVariables,
@@ -14,27 +12,29 @@ import {
   LoginVariables,
   RegisterVariables,
 } from 'types/auth';
+import { ResponseData } from 'types';
+import ResponseError from 'utils/error';
 
 export const useLoginMutation = () => {
-  return useMutation<LoginData, AxiosError, LoginVariables>((variables) =>
+  return useMutation<LoginData, ResponseError, LoginVariables>((variables) =>
     requestLogin(variables),
   );
 };
 
 export const useConfirmEmailMutation = () => {
-  return useMutation<ResponseData, AxiosError, ConfirmEmailVariables>(
+  return useMutation<ResponseData, ResponseError, ConfirmEmailVariables>(
     (variables) => requestConfirmEmail(variables),
   );
 };
 
 export const useConfirmCodeMutation = () => {
-  return useMutation<ResponseData, AxiosError, ConfirmCodeVariables>(
+  return useMutation<ResponseData, ResponseError, ConfirmCodeVariables>(
     (variables) => requestConfirmCode(variables),
   );
 };
 
 export const useRegisterMutation = () => {
-  return useMutation<ResponseData, AxiosError, RegisterVariables>((variables) =>
-    requestRegister(variables),
+  return useMutation<ResponseData, ResponseError, RegisterVariables>(
+    (variables) => requestRegister(variables),
   );
 };

@@ -4,23 +4,26 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from './styles/GlobalStyle';
-import { lightTheme } from './styles/Theme';
+import { defaultTheme } from './styles/Theme';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RegisterContextProvider } from './contexts/RegisterContext';
 import { UserContextProvider } from 'contexts/UserContext';
+import { SnackbarContextProvider } from 'contexts/SnackbarContext';
 
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={defaultTheme}>
       <QueryClientProvider client={queryClient}>
-        <UserContextProvider>
-          <RegisterContextProvider>
-            <GlobalStyle />
-            <App />
-          </RegisterContextProvider>
-        </UserContextProvider>
+        <SnackbarContextProvider>
+          <UserContextProvider>
+            <RegisterContextProvider>
+              <GlobalStyle />
+              <App />
+            </RegisterContextProvider>
+          </UserContextProvider>
+        </SnackbarContextProvider>
       </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>,

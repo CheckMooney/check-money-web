@@ -1,11 +1,11 @@
+import { API_URL } from 'constants/urls';
+import { privateClient, publicClient } from '.';
 import {
   ConfirmCodeVariables,
   ConfirmEmailVariables,
   LoginVariables,
   RegisterVariables,
 } from 'types/auth';
-import { API_URL } from 'constants/urls';
-import { privateClient, publicClient } from '.';
 
 export const requestGetSelfProfile = async () => {
   const response = await privateClient.get(API_URL.GET_SELF_PROFILE);
@@ -18,8 +18,8 @@ export const requestLogin = async ({ email, password }: LoginVariables) => {
 };
 
 export const requestConfirmEmail = async ({ email }: ConfirmEmailVariables) => {
-  const response = await publicClient.post(API_URL.CONFIRM_EMAIL, { email });
-  return response.data;
+  const { data } = await publicClient.post(API_URL.CONFIRM_EMAIL, { email });
+  return data;
 };
 
 export const requestConfirmCode = async ({

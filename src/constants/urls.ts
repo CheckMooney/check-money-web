@@ -6,4 +6,10 @@ export const API_URL = {
   LOGIN_GOOGLE: '/auth/login/google',
   SILENT_REFRESH: '/auth/refresh',
   GET_SELF_PROFILE: '',
+  ACCOUNTS: '/accounts',
+  GET_TRANSACTIONS: (accountId: number) =>
+    `/accounts/${accountId}/transactions`,
+  CREATE_TRANSACTION: '/transactions',
+  TRANSACTION: (transactionId: number) => `/transactions/${transactionId}`,
+  CATEGORY: '/category',
 };

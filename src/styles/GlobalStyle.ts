@@ -5,7 +5,6 @@ export const GlobalStyle = createGlobalStyle`
   ${reset}
 
   * {
-    font-size: 100%;
     box-sizing: border-box;
   }
 
@@ -41,8 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     resize: none;
   }
 
-  a {
-    all: unset;
+  a, input, select, button {
     color: ${({ theme }) => theme.color.text.base};
   }
   a:link {
@@ -61,5 +59,14 @@ export const GlobalStyle = createGlobalStyle`
 
   a, button {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  svg {
+    display: block;
+  }
+
+  input[type="date"] {    
+    appearance: none;
+    font-family: Helvetica, Arial, Roboto, sans-serif;
   }
 `;

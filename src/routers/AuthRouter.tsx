@@ -1,12 +1,10 @@
 import React from 'react';
-import AuthLayout from '../layouts/AuthLayout';
+import AuthLayout from '../layouts/AuthLayout/AuthLayout';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import {
-  FindPasswordPage,
-  LoginPage,
-  RegisterPage,
-  ResendCodePage,
-} from 'pages/auth';
+import RegisterPage from 'pages/RegisterPage/RegisterPage';
+import LoginPage from 'pages/LoginPage/LoginPage';
+import FindPasswordPage from 'pages/FindPasswordPage/FindPasswordPage';
+import ResendCodePage from 'pages/ResendCodePage/ResendCodePage';
 
 export const AuthRouter = () => {
   let { path } = useRouteMatch();

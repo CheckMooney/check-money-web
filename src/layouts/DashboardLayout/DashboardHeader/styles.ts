@@ -8,9 +8,11 @@ export const TopBarContainer = styled.header`
   justify-content: center;
   padding: 0 2rem;
 
-  background-color: var(--color--bg-secondary);
-  color: var(--color--text-secondary);
-  z-index: 100;
+  ${({ theme: { color, zIndex } }) => `
+    color: ${color.text.light};
+    background-color: ${color.background.dark};
+    z-index: ${zIndex.sticky};
+  `};
 `;
 
 export const TopBarInnerContainer = styled.div`
@@ -37,10 +39,10 @@ export const TopBarButton = styled.button<CSSProperties>`
   margin-right: ${({ marginRight }) => marginRight};
   cursor: pointer;
   border-radius: 0.25rem;
-  color: #484b4c;
+  color: #333;
   height: 1.75rem;
   min-width: 1.75rem;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;

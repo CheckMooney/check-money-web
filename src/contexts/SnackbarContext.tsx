@@ -1,4 +1,3 @@
-import Snackbar from 'components/Snackbar';
 import { SNACKBAR_DURATION, SNACKBAR_MAX_NUM } from 'constants/snackbar';
 import React, {
   createContext,
@@ -7,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import Snackbar from 'components/common/Snackbar/Snackbar';
 
 interface Props {
   children: React.ReactNode;

@@ -17,10 +17,7 @@ const DashboardLayout: React.FC = ({ children }) => {
           isVisible={isOpenSidebar}
           onClick={() => setIsOpenSidebar(!isOpenSidebar)}
         />
-        <DashboardSidebar
-          isOpen={isOpenSidebar}
-          toggoleOpen={() => setIsOpenSidebar(!isOpenSidebar)}
-        />
+        <DashboardSidebar isOpen={isOpenSidebar} />
         <DashboardMainContainer isOpen={isOpenSidebar}>
           {children}
         </DashboardMainContainer>

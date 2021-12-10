@@ -1,12 +1,12 @@
 export const defaultTheme = {
   color: {
     background: {
-      light: '#fff',
-      base: '#f7f7f7',
-      dark: '#eee',
+      base: '#fff',
+      dark: '#fafafa',
     },
     text: {
-      light: '#333',
+      lighter: '#999',
+      light: '#666',
       base: '#111',
       dark: '#000',
     },
@@ -16,7 +16,7 @@ export const defaultTheme = {
       dark: '#120FB7',
     },
     border: {
-      light: '#f2f2f2',
+      light: '#f7f7f7',
       base: '#e2e2e2',
       dark: '#999',
     },
@@ -25,6 +25,7 @@ export const defaultTheme = {
   },
   zIndex: {
     sticky: 100,
+    dropdown: 8000,
     modal: 9000,
     snackbar: 10000,
   },
@@ -34,7 +35,7 @@ export const defaultTheme = {
     lg: '0 2px 6px 0 rgba(0,0,0,0.20)',
     xl: '0px 4px 64px rgba(0,0,0,0.35)',
     hover: '0 6px 24px 0px rgba(0,0,0,0.20)',
-    focus: '0 0 0 1px #1613D1,0 0 0 4px #dceaff',
+    focus: '0 0 0 1px #1613D1',
   },
   radius: {
     sm: '0.125rem',

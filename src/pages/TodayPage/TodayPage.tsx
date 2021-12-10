@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeaderWrapper, MainWrapper, Wrapper } from './TodayPage.styles';
+import { HeaderWrapper, MainWrapper, Wrapper } from './TodayPage.style';
 
-export const TodayPage = () => {
+const TodayPage = () => {
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -16,3 +16,5 @@ export const TodayPage = () => {
     </Wrapper>
   );
 };
+
+export default TodayPage;

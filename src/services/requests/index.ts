@@ -9,14 +9,37 @@ import {
   setRefreshToken,
 } from 'storages';
 import { SilentRefreshData } from 'types/auth';
+import ResponseError from 'utils/error';
 
 export const publicClient = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
 
+export const errorHandler = (error: any) => {
+  if (axios.isAxiosError(error)) {
+    throw new ResponseError(error.response?.data?.code);
+  } else {
+    throw new ResponseError();
+  }
+};
+
+publicClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    errorHandler(error);
+  },
+);
+
 export const privateClient = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
+
+privateClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    errorHandler(error);
+  },
+);
 
 privateClient.interceptors.request.use(
   async function (config: AxiosRequestConfig) {
@@ -49,7 +72,6 @@ privateClient.interceptors.request.use(
     return config;
   },
   function (error) {
-    setRefreshToken('');
     setAccessToken('');
     setAccessTokenExpiredAt('');
   },

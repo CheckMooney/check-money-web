@@ -1,6 +1,8 @@
+import HomePage from 'pages/HomePage/HomePage';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { HomePage, NotFoundPage } from '../pages/common';
+
 import MainLayout from '../layouts/MainLayout';
 
 export const MainRouter = () => {

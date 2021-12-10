@@ -10,7 +10,7 @@ export const HeaderContainer = styled.header`
   width: 100%;
   height: 4rem;
   z-index: 100;
-  background-color: var(--color--bg-primary);
+  background-color: ${({ theme }) => theme.color.background.base};
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 `;
 

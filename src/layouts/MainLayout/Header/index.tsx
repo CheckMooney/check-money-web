@@ -1,17 +1,20 @@
 import React from 'react';
-import { Container, HeaderContainer } from './styles';
+import { HeaderContainer, Container } from './styles';
 import { MobileNavigation } from './MobileNavigation';
 import { Navigation } from './Navigation';
-import { Logo } from 'components/common';
+import { Logo } from 'components/common/Logo/Logo';
+import ResponsiveContainer from 'components/common/ResponsiveContainer/ResponsiveContainer';
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <Container className="container">
-        <Logo />
-        <Navigation />
-        <MobileNavigation />
-      </Container>
+      <ResponsiveContainer>
+        <Container>
+          <Logo />
+          <Navigation />
+          <MobileNavigation />
+        </Container>
+      </ResponsiveContainer>
     </HeaderContainer>
   );
 };

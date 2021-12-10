@@ -1,65 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IoAddOutline } from 'react-icons/io5';
+import { useGetAccountsQuery } from 'services/queries/account';
+import AddAccountModal from 'components/Modal/AddAccountModal/AddAccountModal';
 import {
-  IoAddOutline,
-  IoCalendarNumberOutline,
-  IoCalendarOutline,
-} from 'react-icons/io5';
-import {
+  AddAccountItem,
   DashboardSidebarContainer,
-  SidebarLink,
   DashboardSidebarList,
-  AddAccountButton,
+  SidebarItem,
 } from './styles';
+import AccountItem from 'components/common/AccountItem/AccountItem';
 
 interface IDashboardSidebarProps {
   isOpen?: boolean;
-  toggoleOpen?: () => void;
 }
 
-const DashboardSidebar: React.FC<IDashboardSidebarProps> = ({
-  isOpen,
-  toggoleOpen,
-}) => {
-  const sidebarItems = [
-    {
-      to: '/dashboard/today',
-      icon: IoCalendarNumberOutline,
-      iconColor: '#058527',
-      label: '오늘의 소비',
-    },
-    {
-      to: '/dashboard/calendar',
-      icon: IoCalendarOutline,
-      iconColor: '#692fc2',
-      label: '월별 소비',
-    },
-  ];
+const DashboardSidebar: React.FC<IDashboardSidebarProps> = ({ isOpen }) => {
+  const [isAddAccountModalOpen, setIsAddAccountModalOpen] =
+    useState<boolean>(false);
+  const { data: accountsData } = useGetAccountsQuery();
+
   return (
     <DashboardSidebarContainer isOpen={isOpen}>
       <div>
         <DashboardSidebarList>
-          {sidebarItems.map((item, index) => (
-            <li key={index}>
-              <SidebarLink to={item.to} activeClassName="active-sidebar">
-                <item.icon
-                  className="item-icon"
-                  color={item.iconColor}
-                  size={20}
-                />
-                <span className="item-label">{item.label}</span>
-              </SidebarLink>
-            </li>
+          <SidebarItem>
+            <AddAccountItem>
+              <span>나의 계좌</span>
+              <button onClick={() => setIsAddAccountModalOpen(true)}>
+                <IoAddOutline size={20} />
+              </button>
+            </AddAccountItem>
+          </SidebarItem>
+          {accountsData?.rows.map((account) => (
+            <SidebarItem key={account.id}>
+              <AccountItem account={account} />
+            </SidebarItem>
           ))}
         </DashboardSidebarList>
-        <DashboardSidebarList>
-          <li>
-            <AddAccountButton>
-              <span>나의 계좌</span>
-              <IoAddOutline size={20} />
-            </AddAccountButton>
-          </li>
-        </DashboardSidebarList>
       </div>
+      {isAddAccountModalOpen && (
+        <AddAccountModal onClose={() => setIsAddAccountModalOpen(false)} />
+      )}
     </DashboardSidebarContainer>
   );
 };

@@ -9,7 +9,7 @@ import {
   TopBarLeft,
   TopBarRight,
 } from './styles';
-import { AddTransactionModal } from 'components/Modal/AddTransactionModal/AddTransactionModal';
+import AddTransactionModal from 'components/Modal/AddTransactionModal/AddTransactionModal';
 
 interface IDashboardHeaderProps {
   toggleOpen: () => void;
@@ -18,8 +18,7 @@ interface IDashboardHeaderProps {
 const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
   const history = useHistory();
 
-  const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
-
+  const [addModalOpen, setModalOpen] = useState<boolean>(false);
   return (
     <TopBarContainer>
       <TopBarInnerContainer>
@@ -32,10 +31,7 @@ const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
           </TopBarButton>
         </TopBarLeft>
         <TopBarRight>
-          <TopBarButton
-            marginRight="1rem"
-            onClick={() => setAddModalOpen(true)}
-          >
+          <TopBarButton marginRight="1rem" onClick={() => setModalOpen(true)}>
             <IoAddOutline size={24} />
           </TopBarButton>
           <TopBarButton>
@@ -44,7 +40,7 @@ const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
         </TopBarRight>
       </TopBarInnerContainer>
       {addModalOpen && (
-        <AddTransactionModal onClose={() => setAddModalOpen(false)} />
+        <AddTransactionModal onClose={() => setModalOpen(false)} />
       )}
     </TopBarContainer>
   );

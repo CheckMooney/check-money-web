@@ -9,7 +9,7 @@ import {
   MobileNavigationHeader,
   MobileNavigationBody,
 } from './styles';
-import { Logo } from 'components/common';
+import { Logo } from 'components/common/Logo/Logo';
 
 export const MobileNavigation = () => {
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
