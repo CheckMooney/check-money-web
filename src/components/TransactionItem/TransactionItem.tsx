@@ -3,7 +3,6 @@ import useConfirm from 'hooks/useConfirm';
 import EditTransactionModal from 'components/Modal/EditTransactionModal/EditTransactionModal';
 import useTransactionMutation from 'hooks/useTransactionMutation';
 import { IoPencilOutline, IoTrashOutline } from 'react-icons/io5';
-import { useGetCategoryQuery } from 'services/queries/transaction';
 import { Transaction } from 'types/transaction';
 import {
   ActionButton,
@@ -20,8 +19,18 @@ interface TransactionItemProps {
   transaction: Transaction;
 }
 
+const categoryImages = [
+  { src: '/images/category/food.png', alt: '식비' },
+  { src: '/images/category/shopping.png', alt: '쇼핑' },
+  { src: '/images/category/house.png', alt: '주거비' },
+  { src: '/images/category/medical.png', alt: '의료비' },
+  { src: '/images/category/life.png', alt: '생활비' },
+  { src: '/images/category/phone.png', alt: '통신비' },
+  { src: '/images/category/car.png', alt: '교통비' },
+  { src: '/images/category/etc.png', alt: '기타' },
+];
+
 const TransactionItem = ({ transaction }: TransactionItemProps) => {
-  const { data: categories } = useGetCategoryQuery();
   const { deleteTransaction } = useTransactionMutation();
 
   const [isShowActions, setIsShowActions] = useState<boolean>(false);
@@ -43,7 +52,17 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
       onMouseLeave={() => setIsShowActions(false)}
     >
       <CategoryWrapper>
-        {categories && <div>{categories[transaction.category]}</div>}
+        {transaction.category < categoryImages.length ? (
+          <img
+            src={categoryImages[transaction.category].src}
+            alt={categoryImages[transaction.category].alt}
+          />
+        ) : (
+          <img
+            src={categoryImages[categoryImages.length - 1].src}
+            alt={categoryImages[categoryImages.length - 1].alt}
+          />
+        )}
       </CategoryWrapper>
       <ContentWrapper>
         <PriceContent isConsumption={!!transaction.is_consumption}>

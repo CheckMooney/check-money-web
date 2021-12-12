@@ -125,7 +125,6 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
           <FormLabel htmlFor="detail">설명</FormLabel>
           <TextInput type="text" id="detail" {...register('detail')} />
         </FormField>
-
         <FooterWrapper>
           <Button
             type="submit"

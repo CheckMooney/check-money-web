@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { RiMenuFill, RiHomeLine } from 'react-icons/ri';
-import { IoAddOutline, IoPersonCircle } from 'react-icons/io5';
 import { useHistory } from 'react-router';
+import { ReactComponent as HomeIcon } from 'assets/svg/home.svg';
+import { ReactComponent as MenuIcon } from 'assets/svg/menu.svg';
+import { ReactComponent as AddIcon } from 'assets/svg/add.svg';
+import ProfileModal from 'components/Modal/ProfileModal/ProfileModal';
+import AddTransactionModal from 'components/Modal/AddTransactionModal/AddTransactionModal';
 import {
   TopBarButton,
   TopBarContainer,
@@ -9,7 +12,9 @@ import {
   TopBarLeft,
   TopBarRight,
 } from './styles';
-import AddTransactionModal from 'components/Modal/AddTransactionModal/AddTransactionModal';
+import ProfileImage from 'components/common/ProfileImage/ProfileImage';
+import DropDown from 'components/common/DropDown/DropDown';
+import { useUserContext } from 'contexts/UserContext';
 
 interface IDashboardHeaderProps {
   toggleOpen: () => void;
@@ -17,30 +22,47 @@ interface IDashboardHeaderProps {
 
 const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
   const history = useHistory();
-
-  const [addModalOpen, setModalOpen] = useState<boolean>(false);
+  const { logout } = useUserContext();
+  const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+  const [profileModalOpen, setProfileModalOpen] = useState<boolean>(false);
+  const profileDropDownItems = [
+    {
+      text: '내 계정',
+      onClick: () => setProfileModalOpen(true),
+    },
+    {
+      text: '로그아웃',
+      onClick: () => logout(),
+    },
+  ];
   return (
     <TopBarContainer>
       <TopBarInnerContainer>
         <TopBarLeft>
-          <TopBarButton onClick={toggleOpen} marginRight="1rem">
-            <RiMenuFill size={24} />
+          <TopBarButton onClick={toggleOpen} marginRight="0.5rem">
+            <MenuIcon width={24} height={24} />
           </TopBarButton>
-          <TopBarButton onClick={() => history.push('/dashboard')}>
-            <RiHomeLine size={24} />
+          <TopBarButton onClick={() => history.push('/dashboard/today')}>
+            <HomeIcon width={24} height={24} />
           </TopBarButton>
         </TopBarLeft>
         <TopBarRight>
-          <TopBarButton marginRight="1rem" onClick={() => setModalOpen(true)}>
-            <IoAddOutline size={24} />
+          <TopBarButton
+            marginRight="1rem"
+            onClick={() => setAddModalOpen(true)}
+          >
+            <AddIcon width={24} height={24} />
           </TopBarButton>
-          <TopBarButton>
-            <IoPersonCircle size={24} />
-          </TopBarButton>
+          <DropDown items={profileDropDownItems} direction="right">
+            <ProfileImage />
+          </DropDown>
         </TopBarRight>
       </TopBarInnerContainer>
       {addModalOpen && (
-        <AddTransactionModal onClose={() => setModalOpen(false)} />
+        <AddTransactionModal onClose={() => setAddModalOpen(false)} />
+      )}
+      {profileModalOpen && (
+        <ProfileModal onClose={() => setProfileModalOpen(false)} />
       )}
     </TopBarContainer>
   );

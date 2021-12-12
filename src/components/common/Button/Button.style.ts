@@ -21,7 +21,7 @@ export const DefaultButton = styled.button<{ color: string }>`
     color: ${color === 'primary' ? 'white' : theme.color.text.base};
     background-color: ${color === 'primary'
       ? theme.color.primary.base
-      : theme.color.background.dark};
+      : theme.color.background.base};
 
     &:disabled {
       background-color: ${theme.color.disabled};
@@ -52,8 +52,8 @@ export const FullWidthButton = styled(DefaultButton)<{
 export const SmallButton = styled(DefaultButton)<{
   $cssProps?: CSSProp;
 }>`
-  padding: 0.375rem 0.75rem;
-  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
 
   ${({ $cssProps }) => css`
     ${$cssProps}

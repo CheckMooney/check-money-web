@@ -21,18 +21,18 @@ export const DropDownButton = styled.button`
   align-items: center;
 `;
 
-export const DropDownList = styled.ul<{ isShown?: boolean }>`
-  ${({ theme: { color, zIndex }, isShown }) => css`
+export const DropDownList = styled.ul<{ isShown?: boolean; direction: string }>`
+  ${({ theme: { color, radius, zIndex }, isShown, direction }) => css`
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0.25rem;
+    ${direction === 'left' ? 'left: 0;' : 'right: 0;'}
 
     display: flex;
     flex-direction: column;
 
     width: 12rem;
     padding: 0.25rem 0.25rem;
-
+    border-radius: ${radius.md};
     background-color: ${color.background.base};
     transform: translateY(2rem);
     transition: opacity 0.2s;

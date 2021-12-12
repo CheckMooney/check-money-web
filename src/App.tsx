@@ -3,31 +3,28 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { MainRouter } from './routers/MainRouter';
 import { DashboardRouter } from './routers/DashboardRouter';
 import { AuthRouter } from './routers/AuthRouter';
-import { requestGetSelfProfile } from 'services/requests';
+import { requestCheckAccessToken } from 'services/requests';
 import { useUserContext } from 'contexts/UserContext';
-import { getRefreshToken } from 'storages';
 
 function App() {
   const { isLoggedIn, silentRefresh, logout } = useUserContext();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    setIsLoading(true);
     (async () => {
-      const refreshToken = getRefreshToken();
-      if (!refreshToken) return;
+      console.log('로딩중2');
       try {
-        await requestGetSelfProfile();
+        await requestCheckAccessToken();
         silentRefresh();
       } catch (error) {
         logout();
       }
+      setIsLoading(false);
     })();
-    setIsLoading(false);
   }, [silentRefresh, logout]);
 
   if (isLoading) {
-    return <div></div>;
+    return <div>로딩중</div>;
   }
 
   return (

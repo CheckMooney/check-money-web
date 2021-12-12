@@ -1,35 +1,46 @@
+import { HEADER_HEIGHT_REM, SIDEBAR_WIDTH_REM } from 'constants/layout';
+import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 export const DashboardSidebarContainer = styled.div<{ isOpen?: boolean }>`
   position: fixed;
-  width: 15rem;
-  height: calc(100vh - 3rem);
+  width: ${SIDEBAR_WIDTH_REM};
+  height: calc(100vh - ${HEADER_HEIGHT_REM});
   padding-top: 2rem;
   padding-left: 2.5rem;
   padding-right: 0.5rem;
-  transition: left 0.25s ease-in;
-  z-index: 100;
+  transition: left 0.25s ease;
 
   ${({ isOpen, theme }) => css`
     left: ${isOpen ? '0' : '-20rem'};
     background-color: ${theme.color.background.dark};
+    z-index: ${theme.zIndex.sticky};
   `}
 `;
 
 export const DashboardSidebarList = styled.ul`
   display: flex;
   flex-direction: column;
-  padding-right: 1rem;
-  margin-bottom: 2rem;
-
-  li {
-    width: 100%;
-  }
+  margin-bottom: 1rem;
 `;
 
 export const SidebarItem = styled.li`
-  padding: 0.75rem 0.5rem;
+  margin-bottom: 0.25rem;
+  padding: 0.375rem;
   border-radius: 0.25rem;
+
+  min-height: 1.5rem;
+  line-height: 1.5rem;
+`;
+
+export const SidebarLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  flex: 1;
+
+  svg {
+    margin-right: 0.5rem;
+  }
 `;
 
 export const AddAccountItem = styled.div`

@@ -7,9 +7,8 @@ import {
   RegisterVariables,
 } from 'types/auth';
 
-export const requestGetSelfProfile = async () => {
-  const response = await privateClient.get(API_URL.GET_SELF_PROFILE);
-  return response.data;
+export const requestCheckAccessToken = async () => {
+  await privateClient.get('');
 };
 
 export const requestLogin = async ({ email, password }: LoginVariables) => {

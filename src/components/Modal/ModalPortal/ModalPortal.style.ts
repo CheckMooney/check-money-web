@@ -1,16 +1,12 @@
+import { setTabletMediaQuery } from 'components/styled/mediaQueries';
 import styled from 'styled-components';
 
 export const ModalTemplateWrapper = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
 
   ${({ theme: { zIndex } }) => `
     z-index: ${zIndex.modal};
@@ -20,7 +16,7 @@ export const ModalTemplateWrapper = styled.div`
 export const BackLayer = styled.div`
   position: fixed;
   top: 0;
-  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 
@@ -29,12 +25,28 @@ export const BackLayer = styled.div`
 `;
 
 export const FrontLayer = styled.div`
-  width: 25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 
-  ${({ theme: { color, zIndex, radius } }) => `
+  padding: 2rem 1rem 0 1rem;
+  ${setTabletMediaQuery`
+    align-items: center;
+  `}
+`;
+
+export const FrontWrapper = styled.div`
+  width: 100%;
+  max-width: 30rem;
+  max-height: 100%;
+  overflow: auto;
+  ${({ theme: { color, zIndex, radius, shadow } }) => `
     border-radius: ${radius.lg};
     background-color: ${color.background.base};
-    z-index: ${zIndex.modal};
+    box-shadow: ${shadow.lg};
+    z-index: ${zIndex.modal + 1};
   `}
 `;
 
@@ -49,7 +61,6 @@ export const HeaderWrapper = styled.div`
     border-top-left-radius: ${radius.lg};
     border-top-right-radius: ${radius.lg};
     background-color: ${color.background.dark};
-    z-index: ${zIndex.modal};
   `}
 `;
 

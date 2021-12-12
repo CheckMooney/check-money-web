@@ -7,9 +7,11 @@ import {
   DashboardSidebarContainer,
   DashboardSidebarList,
   SidebarItem,
+  SidebarLink,
 } from './styles';
 import AccountItem from 'components/common/AccountItem/AccountItem';
-
+import TodayIcon from 'components/common/TodayIcon/TodayIcon';
+import { ReactComponent as CalendarIcon } from 'assets/svg/calendar.svg';
 interface IDashboardSidebarProps {
   isOpen?: boolean;
 }
@@ -22,6 +24,21 @@ const DashboardSidebar: React.FC<IDashboardSidebarProps> = ({ isOpen }) => {
   return (
     <DashboardSidebarContainer isOpen={isOpen}>
       <div>
+        <DashboardSidebarList>
+          <SidebarItem>
+            <SidebarLink to="/dashboard/today">
+              <TodayIcon width="24" height="24" color="red" />
+              <span>오늘</span>
+            </SidebarLink>
+          </SidebarItem>
+          <SidebarItem>
+            <SidebarLink to="/dashboard/month">
+              <CalendarIcon width="24" height="24" color="blue" />
+              <span>월별 통계</span>
+            </SidebarLink>
+          </SidebarItem>
+        </DashboardSidebarList>
+
         <DashboardSidebarList>
           <SidebarItem>
             <AddAccountItem>

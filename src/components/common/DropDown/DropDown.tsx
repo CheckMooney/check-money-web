@@ -16,9 +16,14 @@ export interface DropDownItem {
 
 interface DropDownProps {
   items: DropDownItem[];
+  direction?: 'left' | 'right';
 }
 
-const DropDown: React.FC<DropDownProps> = ({ items, children }) => {
+const DropDown: React.FC<DropDownProps> = ({
+  direction = 'left',
+  items,
+  children,
+}) => {
   const [isElementShown, setIsElementShown] = useState<boolean>(false);
 
   const handleToggleDropdown = () => {
@@ -36,7 +41,7 @@ const DropDown: React.FC<DropDownProps> = ({ items, children }) => {
         <DropDownBackLayer onClick={() => setIsElementShown(false)} />
       )}
       <DropDownButton onClick={handleToggleDropdown}>{children}</DropDownButton>
-      <DropDownList isShown={isElementShown}>
+      <DropDownList isShown={isElementShown} direction={direction}>
         {items.map((item) => (
           <DropDownListItem
             key={item.text}

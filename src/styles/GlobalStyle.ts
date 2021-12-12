@@ -69,4 +69,5 @@ export const GlobalStyle = createGlobalStyle`
     appearance: none;
     font-family: Helvetica, Arial, Roboto, sans-serif;
   }
+
 `;

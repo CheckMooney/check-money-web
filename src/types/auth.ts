@@ -1,5 +1,13 @@
 import { ResponseData } from 'types';
 
+export interface User {
+  id: number;
+  email: string;
+  name: string;
+  img_url: string;
+  provider: string;
+}
+
 export interface LoginData extends ResponseData {
   access_token: string;
   refresh_token: string;
@@ -27,3 +35,5 @@ export interface SilentRefreshData extends ResponseData {
   access_token: string;
   refresh_token: string;
 }
+
+export interface GetSelfProfileData extends ResponseData, User {}

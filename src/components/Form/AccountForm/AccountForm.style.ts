@@ -20,12 +20,13 @@ export const TextInput = styled.input`
   padding: 0.25rem;
   font-size: 0.875rem;
 
-  ${({ theme: { color, radius } }) => css`
+  ${({ theme: { color, radius, shadow } }) => css`
     border: 1px solid ${color.border.base};
     border-radius: ${radius.md};
     background-color: ${color.background.dark};
     &:focus {
       border: 1px solid ${color.primary.base};
+      box-shadow: ${shadow.focus};
     }
   `}
 `;

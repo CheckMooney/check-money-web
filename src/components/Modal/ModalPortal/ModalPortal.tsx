@@ -1,9 +1,11 @@
+import ScrollableWrapper from 'components/common/ScrollableWrapper/ScrollableWrapper';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import {
   BackLayer,
   BodyWrapper,
   FrontLayer,
+  FrontWrapper,
   HeaderWrapper,
   Heading,
   ModalTemplateWrapper,
@@ -20,12 +22,16 @@ const ModalTemplate = ({ title, onClose, children }: ModalTemplateProps) => {
     <ModalTemplateWrapper>
       <BackLayer onClick={onClose} />
       <FrontLayer>
-        {title && (
-          <HeaderWrapper>
-            <Heading>{title}</Heading>
-          </HeaderWrapper>
-        )}
-        <BodyWrapper>{children}</BodyWrapper>
+        <FrontWrapper>
+          <ScrollableWrapper>
+            {title && (
+              <HeaderWrapper>
+                <Heading>{title}</Heading>
+              </HeaderWrapper>
+            )}
+            <BodyWrapper>{children}</BodyWrapper>
+          </ScrollableWrapper>
+        </FrontWrapper>
       </FrontLayer>
     </ModalTemplateWrapper>
   );

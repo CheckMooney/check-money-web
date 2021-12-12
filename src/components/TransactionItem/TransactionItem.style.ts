@@ -8,8 +8,8 @@ export const Wrapper = styled.div`
 `;
 
 export const CategoryWrapper = styled.div`
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
 
   margin-right: 1rem;
   border-radius: 1.25rem;
@@ -18,7 +18,11 @@ export const CategoryWrapper = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #eee;
-  font-size: 0.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const ContentWrapper = styled.div`
