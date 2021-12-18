@@ -100,6 +100,7 @@ export const PrevMonthWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
+  margin-bottom: 3rem;
 `;
 
 export const PrevMonthButton = styled.button`

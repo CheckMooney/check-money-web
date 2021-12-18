@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import useConfirm from 'hooks/useConfirm';
 import EditTransactionModal from 'components/Modal/EditTransactionModal/EditTransactionModal';
 import useTransactionMutation from 'hooks/useTransactionMutation';
-import { IoPencilOutline, IoTrashOutline } from 'react-icons/io5';
+import { ReactComponent as EditIcon } from 'assets/svg/edit.svg';
+import { ReactComponent as TrashIcon } from 'assets/svg/trash.svg';
 import { Transaction } from 'types/transaction';
 import {
   ActionButton,
@@ -69,20 +70,18 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
           {transactionPrice}
           <Currency>원</Currency>
         </PriceContent>
-        {transaction.detail && (
-          <DetailContent>{transaction.detail}</DetailContent>
-        )}
+        <DetailContent>{transaction.detail}</DetailContent>
       </ContentWrapper>
       <ActionWrapper isShown={isShowActions}>
         <ActionButton type="button" onClick={() => setIsShowModal(true)}>
-          <IoPencilOutline size={20} />
+          <EditIcon width={24} height={24} />
         </ActionButton>
         <ActionButton
           marginLeft="0.5rem"
           type="button"
           onClick={confirmDeleteTransaction}
         >
-          <IoTrashOutline size={20} />
+          <TrashIcon width={24} height={24} />
         </ActionButton>
       </ActionWrapper>
 

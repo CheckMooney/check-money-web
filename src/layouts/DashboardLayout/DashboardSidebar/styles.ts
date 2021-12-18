@@ -7,8 +7,8 @@ export const DashboardSidebarContainer = styled.div<{ isOpen?: boolean }>`
   width: ${SIDEBAR_WIDTH_REM};
   height: calc(100vh - ${HEADER_HEIGHT_REM});
   padding-top: 2rem;
-  padding-left: 2.5rem;
-  padding-right: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
   transition: left 0.25s ease;
 
   ${({ isOpen, theme }) => css`

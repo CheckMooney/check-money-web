@@ -32,6 +32,10 @@ const useTransactionMutation = () => {
           'transactions',
           { date: dateToString(variables.date, 'yyyy-mm') },
         ]);
+        await queryClient.refetchQueries([
+          'allTransactions',
+          { date: dateToString(variables.date, 'yyyy-mm-dd') },
+        ]);
         pushSnackbarMessage('새로운 내역이 추가되었습니다.');
       },
       onError: (error) => pushSnackbarMessage(error.message),
@@ -44,6 +48,10 @@ const useTransactionMutation = () => {
         await queryClient.refetchQueries([
           'transactions',
           { date: dateToString(variables.date, 'yyyy-mm') },
+        ]);
+        await queryClient.refetchQueries([
+          'allTransactions',
+          { date: dateToString(variables.date, 'yyyy-mm-dd') },
         ]);
         pushSnackbarMessage(
           `${variables.is_consumption ? '지출' : '수입'}내역이 수정되었습니다.`,

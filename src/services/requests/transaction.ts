@@ -11,18 +11,25 @@ export const requestGetCategory = async () => {
   return response.data.category;
 };
 
+export const requestGetAllTransactions = async (date: string) => {
+  const response = await privateClient.get(API_URL.GET_TRANSACTIONS, {
+    params: {
+      date,
+    },
+  });
+  return response.data.rows;
+};
+
 export const requestGetTransactions = async (
   accountId: number,
   date: string,
 ) => {
-  const response = await privateClient.get(
-    API_URL.GET_TRANSACTIONS(accountId),
-    {
-      params: {
-        date,
-      },
+  const response = await privateClient.get(API_URL.GET_TRANSACTIONS, {
+    params: {
+      account_id: accountId,
+      date,
     },
-  );
+  });
   return response.data.rows;
 };
 
@@ -46,7 +53,7 @@ export const requestEditTransaction = async ({
   ...variables
 }: EditTransactionVariables) => {
   const response = await privateClient.put(API_URL.TRANSACTION(id), {
-    is_consumption: +is_consumption,
+    is_consumption: is_consumption ? 1 : 0,
     date: dateToString(date, 'yyyy-mm-dd'),
     ...variables,
   });

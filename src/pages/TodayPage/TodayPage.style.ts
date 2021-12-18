@@ -1,28 +1,76 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 3rem;
-  margin-bottom: 2rem;
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 `;
 
 export const HeaderWrapper = styled.div`
-  display: flex;
-  align-items: flex-end;
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-right: 0.5rem;
-  }
-  h2 {
+  ${({ theme: { color } }) => css`
+    position: sticky;
+    top: 0;
+    z-index: 2;
+
+    display: flex;
+    align-items: flex-end;
+
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid ${color.border.light};
+
+    background-color: ${color.background.base};
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      color: ${color.text.lighter};
+    }
+  `}
+`;
+
+export const TransactionWrapper = styled.div`
+  padding: 0.5rem 0;
+`;
+
+export const AddTransactionButton = styled.button`
+  ${({ theme: { color } }) => css`
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    margin-top: 0.5rem;
     font-size: 1rem;
-    color: #999;
-  }
+    color: ${color.text.light};
+
+    svg {
+      margin-right: 1rem;
+      border-radius: 0.5rem;
+    }
+    span {
+      height: 1rem;
+    }
+
+    &:hover {
+      color: ${color.text.base};
+      svg {
+        color: ${color.background.base};
+        background-color: ${color.primary.light};
+      }
+    }
+  `}
 `;
 
-export const MainWrapper = styled.div`
-  padding: 1rem 0;
+export const EmptyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const Transaction = styled.div``;
+export const EmptyText = styled.div`
+  padding: 0.5rem;
+`;

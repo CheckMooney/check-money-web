@@ -65,7 +65,13 @@ export const DropDownListItem = styled.li`
   :hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
-  svg {
-    margin-right: 0.75rem;
+
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
   }
 `;

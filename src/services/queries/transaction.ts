@@ -3,6 +3,7 @@ import {
   requestCreateTransaction,
   requestDeleteTransaction,
   requestEditTransaction,
+  requestGetAllTransactions,
   requestGetCategory,
   requestGetTransactions,
 } from 'services/requests/transaction';
@@ -18,6 +19,11 @@ export const useGetTransactionsQuery = (accountId: number, date: string) =>
   useQuery<Transaction[], ResponseError>(
     ['transactions', { accountId, date }],
     () => requestGetTransactions(accountId, date),
+  );
+
+export const useGetAllTransactionsQuery = (date: string) =>
+  useQuery<Transaction[], ResponseError>(['allTransactions', { date }], () =>
+    requestGetAllTransactions(date),
   );
 
 export const useGetCategoryQuery = () =>

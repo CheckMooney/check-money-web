@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import DropDown, { DropDownItem } from '../DropDown/DropDown';
 import { Account } from 'types/account';
-import {
-  IoEllipsisHorizontalOutline,
-  IoPencilOutline,
-  IoTrashOutline,
-} from 'react-icons/io5';
+import { IoEllipsisHorizontalOutline } from 'react-icons/io5';
+import { ReactComponent as EditIcon } from 'assets/svg/edit.svg';
+import { ReactComponent as TrashIcon } from 'assets/svg/trash.svg';
 import { Wrapper } from './AccountItem.style';
 import EditAccountModal from 'components/Modal/EditAccountModal/EditAccountModal';
 import useConfirm from 'hooks/useConfirm';
@@ -27,15 +25,15 @@ const AccountItem: React.FC<AccountItemProps> = ({ account }) => {
 
   const accountDropDownItems: DropDownItem[] = [
     {
-      icon: IoPencilOutline,
+      icon: EditIcon,
       onClick: () => {
         setIsEditAccountModalOpen(true);
       },
       text: '계좌 편집',
     },
     {
+      icon: TrashIcon,
       onClick: deleteAccountConfirm,
-      icon: IoTrashOutline,
       text: '계좌 삭제',
     },
   ];

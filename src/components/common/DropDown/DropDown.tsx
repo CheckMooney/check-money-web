@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { IconType } from 'react-icons';
 import {
   DropDownButton,
   DropDownListItem,
@@ -9,7 +8,7 @@ import {
 } from './DropDown.style';
 
 export interface DropDownItem {
-  icon?: IconType;
+  icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   text: string;
   onClick?: () => void;
 }
@@ -47,7 +46,11 @@ const DropDown: React.FC<DropDownProps> = ({
             key={item.text}
             onClick={() => handleDropDownListItemClick(item)}
           >
-            {item.icon && <item.icon size={16} />}
+            {item.icon && (
+              <span>
+                <item.icon width={24} height={24} />
+              </span>
+            )}
             {item.text}
           </DropDownListItem>
         ))}

@@ -18,6 +18,7 @@ const EditTransactionModal: React.FC<EditTransactionModalProps> = ({
     useTransactionMutation();
 
   const onSubmit = async (data: TransactionSchema) => {
+    console.log(data);
     await editTransaction({ id: transaction.id, ...data });
     onClose();
   };

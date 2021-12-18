@@ -7,8 +7,7 @@ export const API_URL = {
   SILENT_REFRESH: '/auth/refresh',
   MY_PROFILE: '/users/my-info',
   ACCOUNTS: '/accounts',
-  GET_TRANSACTIONS: (accountId: number) =>
-    `/accounts/${accountId}/transactions`,
+  GET_TRANSACTIONS: `/transactions`,
   CREATE_TRANSACTION: '/transactions',
   TRANSACTION: (transactionId: number) => `/transactions/${transactionId}`,
   CATEGORY: '/category',

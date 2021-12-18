@@ -4,7 +4,9 @@ export const Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
+
+  cursor: pointer;
 `;
 
 export const CategoryWrapper = styled.div`
@@ -28,8 +30,8 @@ export const CategoryWrapper = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-items: center;
+  justify-content: center;
+  min-height: 2rem;
 `;
 
 export const PriceContent = styled.p<{ isConsumption?: boolean }>`
@@ -60,6 +62,8 @@ export const ActionWrapper = styled.div<{ isShown?: boolean }>`
   right: 0.5rem;
   z-index: 2;
 
+  display: flex;
+
   ${({ isShown }) => css`
     opacity: ${isShown ? 1 : 0};
   `}
@@ -67,10 +71,17 @@ export const ActionWrapper = styled.div<{ isShown?: boolean }>`
 `;
 
 export const ActionButton = styled.button<CSSProperties>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.5rem;
+  height: 1.5rem;
+
   ${({ marginLeft, theme: { color, radius } }) => css`
     margin-left: ${marginLeft};
     color: ${color.text.light};
-    border-radius: ${radius.sm};
+    border-radius: ${radius.md};
     :hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
