@@ -21,21 +21,13 @@ export function compareDate(date1: Date, date2: Date): boolean {
 }
 
 export function getYearMonthDate(date: Date) {
-  const currentYear = date.getFullYear();
-  const currentMonth = date.getMonth() + 1;
-  const currentDay = date.getDate();
-  return { currentYear, currentMonth, currentDay };
-}
-
-export function getCurrentWeek(date: Date) {
-  const { currentYear, currentMonth, currentDay } = getYearMonthDate(date);
-  const monthStartDay = new Date(currentYear, currentMonth - 1, 1).getDay();
-  const currentWeek = Math.floor((currentDay + monthStartDay - 1) / 7);
-  return currentWeek;
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  return { year, month, day };
 }
 
 export function getCurrentDates(currentYear: number, currentMonth: number) {
-  const monthStart = new Date(currentYear, currentMonth - 1, 1);
   const monthEnd = new Date(currentYear, currentMonth, 0);
 
   const currentDates: Date[] = Array.from(
@@ -45,13 +37,25 @@ export function getCurrentDates(currentYear: number, currentMonth: number) {
     (_, i) => new Date(currentYear, currentMonth - 1, i + 1),
   );
 
-  const weekStartDate = 1 - monthStart.getDay();
-  const currentWeeksLength =
-    monthStart.getDay() + monthEnd.getDate() > 35 ? 42 : 35;
+  return currentDates;
+}
 
-  const currentWeeks = Array.from(
-    { length: currentWeeksLength },
-    (_, i) => new Date(currentYear, currentMonth - 1, weekStartDate + i),
-  );
-  return [currentDates, currentWeeks];
+export function getPrevDays(date: Date, prev: number) {
+  const { year, month, day } = getYearMonthDate(date);
+  const prevDays = [];
+  for (let i = 0; i < prev; i++) {
+    prevDays.push(
+      dateToString(new Date(year, month - 1, day - prev + i), 'yyyy-mm-dd'),
+    );
+  }
+  return prevDays;
+}
+
+export function getPrevMonth(date: Date, prev: number) {
+  const prevMonths = [];
+  const { year, month } = getYearMonthDate(date);
+  for (let i = 0; i < prev; i++) {
+    prevMonths.push(dateToString(new Date(year, month - prev + i), 'yyyy-mm'));
+  }
+  return prevMonths;
 }

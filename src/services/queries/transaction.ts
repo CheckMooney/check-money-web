@@ -5,6 +5,8 @@ import {
   requestEditTransaction,
   requestGetAllTransactions,
   requestGetCategory,
+  requestGetTotalConsumptionByCategory,
+  requestGetTotalConsumptionChart,
   requestGetTransactions,
 } from 'services/requests/transaction';
 import ResponseError from 'utils/error';
@@ -41,3 +43,13 @@ export const useEditTransactionMutation = () =>
 
 export const useDeleteTransactionMutation = () =>
   useMutation<ResponseData, ResponseError, number>(requestDeleteTransaction);
+
+export const useGetTotalConsumption = (dateString: string, chartType: string) =>
+  useQuery(['totalConsumption', { dateString, chartType }], () =>
+    requestGetTotalConsumptionChart(dateString, chartType),
+  );
+
+export const useGetTotalConsumptionByCategory = (dateString: string) =>
+  useQuery(['totalConsumptionByCategory', { dateString }], () =>
+    requestGetTotalConsumptionByCategory(dateString),
+  );

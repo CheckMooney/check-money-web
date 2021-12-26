@@ -5,6 +5,7 @@ import { DashboardRouter } from './routers/DashboardRouter';
 import { AuthRouter } from './routers/AuthRouter';
 import { requestCheckAccessToken } from 'services/requests';
 import { useUserContext } from 'contexts/UserContext';
+import LoadingWithLogo from 'components/common/LoadingWithLogo/LoadingWithLogo';
 
 function App() {
   const { isLoggedIn, silentRefresh, logout } = useUserContext();
@@ -24,7 +25,7 @@ function App() {
   }, [silentRefresh, logout]);
 
   if (isLoading) {
-    return <div>로딩중</div>;
+    return <LoadingWithLogo />;
   }
 
   return (

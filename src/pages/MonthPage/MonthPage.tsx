@@ -1,19 +1,18 @@
 import React from 'react';
-
+import { dateToString } from 'utils/date';
+import useDate from 'hooks/useDate';
+import BarChart from 'components/Chart/BarChart/BarChart';
+import PieChart from 'components/Chart/PieChart/PieChart';
+import ScrollableWrapper from 'components/common/ScrollableWrapper/ScrollableWrapper';
 import {
   ChartWrapper,
   FlexWrapper,
   HeaderWrapper,
   Wrapper,
 } from './MonthPage.style';
-import ScrollableWrapper from 'components/common/ScrollableWrapper/ScrollableWrapper';
-import BarChart from 'components/Chart/BarChart/BarChart';
-import useTransactionChart from 'hooks/useTransactionChart';
-import { dateToString } from 'utils/date';
 
 const MonthPage = () => {
-  const { currentDate } = useTransactionChart();
-
+  const { currentDate } = useDate();
   return (
     <ScrollableWrapper>
       <Wrapper>
@@ -24,10 +23,9 @@ const MonthPage = () => {
           <ChartWrapper>
             <BarChart />
           </ChartWrapper>
-          <ChartWrapper>1</ChartWrapper>
-          <ChartWrapper>1</ChartWrapper>
-          <ChartWrapper>1</ChartWrapper>
-          <ChartWrapper>1</ChartWrapper>
+          <ChartWrapper>
+            <PieChart />
+          </ChartWrapper>
         </FlexWrapper>
       </Wrapper>
     </ScrollableWrapper>

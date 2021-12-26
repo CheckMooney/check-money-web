@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { getCurrentDates, getCurrentWeek, getYearMonthDate } from 'utils/date';
+import { getCurrentDates, getYearMonthDate } from 'utils/date';
 
 function useDate(date?: Date) {
   const [currentDate, setCurrentDate] = useState<Date>(date ?? new Date());
@@ -13,23 +13,20 @@ function useDate(date?: Date) {
       new Date(currentDate.getFullYear(), currentDate.getMonth() - 1),
     );
   };
-  const { currentYear, currentMonth } = useMemo(
+
+  const { year: currentYear, month: currentMonth } = useMemo(
     () => getYearMonthDate(currentDate),
     [currentDate],
   );
 
-  const currentWeek = useMemo(() => getCurrentWeek(currentDate), [currentDate]);
-
-  const [currentDates, currentWeeks] = useMemo(
+  const currentDates = useMemo(
     () => getCurrentDates(currentYear, currentMonth),
     [currentYear, currentMonth],
   );
 
   return {
     currentDates,
-    currentWeeks,
     currentDate,
-    currentWeek,
     setNextMonth,
     setPrevMonth,
     setCurrentDate,

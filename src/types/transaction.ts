@@ -10,6 +10,10 @@ export interface Transaction {
   account_id: number;
 }
 
+export interface GetCategoryData extends ResponseData {
+  category: string[];
+}
+
 export interface GetTransactionsData extends ResponseData {
   rows: Transaction[];
   count: number;
