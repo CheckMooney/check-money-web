@@ -15,6 +15,8 @@ import {
 import ProfileImage from 'components/common/ProfileImage/ProfileImage';
 import DropDown from 'components/common/DropDown/DropDown';
 import { useUserContext } from 'contexts/UserContext';
+import SelectModal from 'components/Modal/SelectModal/SelectModal';
+import AddSubscriptionModal from 'components/Modal/AddSubscriptionModal/AddSubscriptionModal';
 
 interface IDashboardHeaderProps {
   toggleOpen: () => void;
@@ -25,6 +27,11 @@ const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
   const { logout } = useUserContext();
   const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
   const [profileModalOpen, setProfileModalOpen] = useState<boolean>(false);
+  const [addTransactionModalOpen, setAddTransactionModalOpen] =
+    useState<boolean>(false);
+  const [addSubscriptionModalOpen, setAddSubscriptionModalOpen] =
+    useState<boolean>(false);
+
   const profileDropDownItems = [
     {
       text: '내 계정',
@@ -35,6 +42,18 @@ const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
       onClick: () => logout(),
     },
   ];
+
+  const addSelectModalItems = [
+    {
+      label: '새로운 내역 추가',
+      onClick: () => setAddTransactionModalOpen(true),
+    },
+    {
+      label: '고정 내역 추가',
+      onClick: () => setAddSubscriptionModalOpen(true),
+    },
+  ];
+
   return (
     <TopBarContainer>
       <TopBarInnerContainer>
@@ -59,10 +78,23 @@ const DashboardHeader: React.FC<IDashboardHeaderProps> = ({ toggleOpen }) => {
         </TopBarRight>
       </TopBarInnerContainer>
       {addModalOpen && (
-        <AddTransactionModal onClose={() => setAddModalOpen(false)} />
+        <SelectModal
+          selectModalitems={addSelectModalItems}
+          onClose={() => setAddModalOpen(false)}
+        />
       )}
       {profileModalOpen && (
         <ProfileModal onClose={() => setProfileModalOpen(false)} />
+      )}
+      {addTransactionModalOpen && (
+        <AddTransactionModal
+          onClose={() => setAddTransactionModalOpen(false)}
+        />
+      )}
+      {addSubscriptionModalOpen && (
+        <AddSubscriptionModal
+          onClose={() => setAddSubscriptionModalOpen(false)}
+        />
       )}
     </TopBarContainer>
   );

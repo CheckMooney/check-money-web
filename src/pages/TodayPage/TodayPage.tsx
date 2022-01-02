@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { dateToString } from 'utils/date';
 import { useGetAllTransactionsQuery } from 'services/queries/transaction';
-import { ReactComponent as BillIcon } from 'assets/svg/bills.svg';
 import { ReactComponent as AddIcon } from 'assets/svg/add.svg';
 import TransactionItem from 'components/TransactionItem/TransactionItem';
 import ScrollableWrapper from 'components/common/ScrollableWrapper/ScrollableWrapper';
 import {
   AddTransactionButton,
-  EmptyWrapper,
-  EmptyText,
   HeaderWrapper,
   Wrapper,
   TransactionWrapper,
 } from './TodayPage.style';
+import EmptyItem from 'components/common/EmptyItem/EmptyItem';
 import AddTransactionModal from 'components/Modal/AddTransactionModal/AddTransactionModal';
 
 const TodayPage = () => {
@@ -51,10 +49,7 @@ const TodayPage = () => {
         </TransactionWrapper>
 
         {!transactions?.length && (
-          <EmptyWrapper>
-            <BillIcon width="240" />
-            <EmptyText>오늘은 아무 내역이 없어요</EmptyText>
-          </EmptyWrapper>
+          <EmptyItem label="오늘은 아무 내역이 없습니다." />
         )}
       </Wrapper>
       {showAddTransactionModal && (

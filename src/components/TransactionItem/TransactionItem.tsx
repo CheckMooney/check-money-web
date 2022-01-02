@@ -15,9 +15,12 @@ import {
   PriceContent,
   Wrapper,
 } from './TransactionItem.style';
+import useSubscriptionMutation from 'hooks/useSubscriptionMutation';
+import EditSubscriptionModal from 'components/Modal/EditSubscriptionModal/EditSubscriptionModal';
 
 interface TransactionItemProps {
   transaction: Transaction;
+  transactionType?: 'transaction' | 'subscription';
 }
 
 const categoryImages = [
@@ -31,12 +34,15 @@ const categoryImages = [
   { src: '/images/category/etc.png', alt: '기타' },
 ];
 
-const TransactionItem = ({ transaction }: TransactionItemProps) => {
+const TransactionItem = ({
+  transactionType = 'transaction',
+  transaction,
+}: TransactionItemProps) => {
   const { deleteTransaction } = useTransactionMutation();
+  const { deleteSubscription } = useSubscriptionMutation();
 
   const [isShowActions, setIsShowActions] = useState<boolean>(false);
-  const [isShowMdoal, setIsShowModal] = useState<boolean>(false);
-  useTransactionMutation();
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   const transactionPrice = transaction.is_consumption
     ? `-${transaction.price.toLocaleString()}`
@@ -44,7 +50,16 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
 
   const confirmDeleteTransaction = useConfirm({
     message: '정말로 삭제하시겠습니까?',
-    onConfirm: () => deleteTransaction(transaction.id),
+    onConfirm: () => {
+      if (transactionType === 'transaction') {
+        deleteTransaction(transaction.id);
+      } else {
+        deleteSubscription({
+          accountId: transaction.account_id,
+          subscriptionId: transaction.id,
+        });
+      }
+    },
   });
 
   return (
@@ -70,7 +85,9 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
           {transactionPrice}
           <Currency>원</Currency>
         </PriceContent>
-        <DetailContent>{transaction.detail}</DetailContent>
+        {transaction.detail && (
+          <DetailContent>{transaction.detail}</DetailContent>
+        )}
       </ContentWrapper>
       <ActionWrapper isShown={isShowActions}>
         <ActionButton type="button" onClick={() => setIsShowModal(true)}>
@@ -85,12 +102,18 @@ const TransactionItem = ({ transaction }: TransactionItemProps) => {
         </ActionButton>
       </ActionWrapper>
 
-      {isShowMdoal && (
-        <EditTransactionModal
-          onClose={() => setIsShowModal(false)}
-          transaction={transaction}
-        />
-      )}
+      {isShowModal &&
+        (transactionType === 'transaction' ? (
+          <EditTransactionModal
+            onClose={() => setIsShowModal(false)}
+            transaction={transaction}
+          />
+        ) : (
+          <EditSubscriptionModal
+            onClose={() => setIsShowModal(false)}
+            subscription={transaction}
+          />
+        ))}
     </Wrapper>
   );
 };

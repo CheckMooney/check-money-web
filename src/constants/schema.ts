@@ -1,4 +1,13 @@
-import { boolean, date, number, object, SchemaOf, string } from 'yup';
+import {
+  boolean,
+  date,
+  number,
+  object,
+  SchemaOf,
+  string,
+  ref,
+  mixed,
+} from 'yup';
 import { CONFIRM_CODE_REGEX, EMAIL_REGEX, PASSWORD_REGEX } from './regex';
 
 export interface LoginSchema {
@@ -58,6 +67,23 @@ export interface FindPasswordSchema {
 export const FIND_PASSWORD_SCHEMA: SchemaOf<FindPasswordSchema> = object({
   email: string()
     .matches(EMAIL_REGEX, '올바른 이메일 형식이 아닙니다.')
+    .required(),
+});
+
+export interface ResetPasswordSchema {
+  password: string;
+  confirmPassword: string;
+}
+
+export const RESET_PASSWORD_SCHEMA: SchemaOf<ResetPasswordSchema> = object({
+  password: string()
+    .matches(
+      PASSWORD_REGEX,
+      '비밀번호는 영대,소문자 숫자 특수문자를 포함한 8~16자로 이루어져야합니다.',
+    )
+    .required(),
+  confirmPassword: mixed()
+    .oneOf([ref('password')], '비밀번호가 일치하지 않습니다.')
     .required(),
 });
 

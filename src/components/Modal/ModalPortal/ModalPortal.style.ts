@@ -1,5 +1,5 @@
 import { setTabletMediaQuery } from 'components/styled/mediaQueries';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ModalTemplateWrapper = styled.div`
   position: fixed;
@@ -37,12 +37,12 @@ export const FrontLayer = styled.div`
   `}
 `;
 
-export const FrontWrapper = styled.div`
+export const FrontWrapper = styled.div<{ width?: string }>`
   width: 100%;
-  max-width: 30rem;
   max-height: 100%;
   overflow: auto;
-  ${({ theme: { color, zIndex, radius, shadow } }) => `
+  ${({ width, theme: { color, zIndex, radius, shadow } }) => css`
+    max-width: ${width ? width : '30rem'};
     border-radius: ${radius.lg};
     background-color: ${color.background.base};
     box-shadow: ${shadow.lg};

@@ -1,5 +1,7 @@
 export const API_URL = {
   CONFIRM_EMAIL: '/auth/request/email',
+  FIND_PASSWORD: '/auth/request/email-for-pwd',
+  RESET_PASSWORD: '/auth/find-pwd',
   CONFIRM_CODE: '/auth/confirm',
   REGISTER: '/auth/join',
   LOGIN: '/auth/login/email',
@@ -9,7 +11,11 @@ export const API_URL = {
   ACCOUNTS: '/accounts',
   GET_TRANSACTIONS: `/transactions`,
   CREATE_TRANSACTION: '/transactions',
-  TRANSACTION: (transactionId: number) => `/transactions/${transactionId}`,
   CATEGORY: '/category',
   UPLOAD_IMAGE: '/users/img',
+  TRANSACTION: (transactionId: number) => `/transactions/${transactionId}`,
+  SUBSCRIPTION: (accountId: number, subscriptionId?: number) =>
+    subscriptionId
+      ? `/accounts/${accountId}/subscriptions/${subscriptionId}`
+      : `/accounts/${accountId}/subscriptions`,
 };

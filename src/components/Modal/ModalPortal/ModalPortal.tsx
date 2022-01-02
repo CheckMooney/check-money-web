@@ -13,16 +13,22 @@ import {
 
 interface ModalTemplateProps {
   title?: string;
+  width?: string;
   onClose: () => void;
   children: React.ReactNode;
 }
 
-const ModalTemplate = ({ title, onClose, children }: ModalTemplateProps) => {
+const ModalTemplate = ({
+  title,
+  width,
+  onClose,
+  children,
+}: ModalTemplateProps) => {
   return (
     <ModalTemplateWrapper>
       <BackLayer onClick={onClose} />
       <FrontLayer>
-        <FrontWrapper>
+        <FrontWrapper width={width}>
           <ScrollableWrapper>
             {title && (
               <HeaderWrapper>

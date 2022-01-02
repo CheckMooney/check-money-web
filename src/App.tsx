@@ -13,7 +13,6 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      console.log('로딩중2');
       try {
         await requestCheckAccessToken();
         silentRefresh();

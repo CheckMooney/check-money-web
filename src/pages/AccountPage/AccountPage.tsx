@@ -5,6 +5,7 @@ import { useGetAccountsQuery } from 'services/queries/account';
 import TransactionList from 'components/TransactionList/TransactionList';
 import ScrollableWrapper from 'components/common/ScrollableWrapper/ScrollableWrapper';
 import { Wrapper } from './AccountPage.style';
+import SubscriptionList from 'components/SubscriptionList/SubscriptionList';
 
 interface AccountPageParams {
   accountId: string;
@@ -30,6 +31,7 @@ const AccountPage = () => {
           description={currentAccount.description}
           accountId={accountId}
         />
+        <SubscriptionList accountId={+accountId} />
       </Wrapper>
     </ScrollableWrapper>
   );

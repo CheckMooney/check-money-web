@@ -80,7 +80,7 @@ const ConfirmEmailForm = ({
   );
 };
 
-const ConfirmCodeForm = ({
+export const ConfirmCodeForm = ({
   onSubmit,
   isLoading,
   errorMessage,

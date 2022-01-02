@@ -5,6 +5,7 @@ import {
   ConfirmEmailVariables,
   LoginVariables,
   RegisterVariables,
+  ResetPasswordVariables,
 } from 'types/auth';
 
 export const requestCheckAccessToken = async () => {
@@ -48,6 +49,24 @@ export const requestRegister = async ({
 export const reqeustLoginGoogle = async (tokenId: string) => {
   const response = await publicClient.post(API_URL.LOGIN_GOOGLE, {
     id_token: tokenId,
+  });
+  return response.data;
+};
+
+export const requestFindPassword = async (email: string) => {
+  const response = await publicClient.post(API_URL.FIND_PASSWORD, {
+    email,
+  });
+  return response.data;
+};
+
+export const requestResetPassword = async ({
+  email,
+  newPassword,
+}: ResetPasswordVariables) => {
+  const response = await publicClient.post(API_URL.RESET_PASSWORD, {
+    email,
+    newPassword,
   });
   return response.data;
 };

@@ -37,3 +37,8 @@ export interface SilentRefreshData extends ResponseData {
 }
 
 export interface GetSelfProfileData extends ResponseData, User {}
+
+export interface ResetPasswordVariables {
+  email: string;
+  newPassword: string;
+}

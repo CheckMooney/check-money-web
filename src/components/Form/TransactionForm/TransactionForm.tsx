@@ -25,11 +25,13 @@ import Spinner from 'components/common/Spinner/Spinner';
 interface TransactionFormProps {
   defaultValues?: TransactionSchema;
   isLoading?: boolean;
+  transactionType?: 'transaction' | 'subscription';
   onSubmit: (data: TransactionSchema) => void;
   onCancel: () => void;
 }
 
 const TransactionForm: React.FC<TransactionFormProps> = ({
+  transactionType = 'transaction',
   defaultValues,
   isLoading,
   onSubmit,
@@ -91,7 +93,8 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
         </FormField>
         <FormField>
           <FormLabel htmlFor="date">
-            {watchIsConsumption ? '지출' : '수입'} 일시
+            {watchIsConsumption ? '지출' : '수입'} 일시{' '}
+            {transactionType === 'subscription' && '(1달마다 내역 추가)'}
           </FormLabel>
           <DatePicker id="date" {...register('date', { valueAsDate: true })}>
             <DatePickerInput>
