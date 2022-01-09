@@ -9,7 +9,6 @@ import {
   MobileNavigationHeader,
   MobileNavigationBody,
 } from './styles';
-import { Logo } from 'components/common/Logo/Logo';
 
 export const MobileNavigation = () => {
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
@@ -39,7 +38,6 @@ export const MobileNavigation = () => {
       </MobileMenuButton>
       <MobileNavigationContainer isOpen={isOpenMobileMenu}>
         <MobileNavigationHeader>
-          <Logo />
           <MobileMenuButton
             onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
           >

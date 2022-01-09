@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   `}
 
   ${setDesktopMediaQuery`
+      max-width: 1600px;
       padding: 0 2.5rem;
   `}
 `;

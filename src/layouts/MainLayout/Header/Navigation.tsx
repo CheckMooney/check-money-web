@@ -6,18 +6,23 @@ export const Navigation = () => {
     {
       label: '로그인',
       to: 'auth/login',
+      color: 'base',
     },
     {
       label: '회원가입',
       to: 'auth/register',
+      color: 'primary',
     },
   ];
+
   return (
     <NavigationContainer>
       <NavigationList>
         {navigationItem.map((item, i) => (
           <li key={i}>
-            <NavigationItem to={item.to}>{item.label}</NavigationItem>
+            <NavigationItem to={item.to} color={item.color}>
+              {item.label}
+            </NavigationItem>
           </li>
         ))}
       </NavigationList>
