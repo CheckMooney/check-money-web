@@ -46,12 +46,15 @@ export const FlexWrapper = styled.div`
 
 export const ChartWrapper = styled.div`
   width: 100%;
-  height: 25rem;
+  height: 30rem;
+
+  ${setTabletMediaQuery`
+    height: 25rem;
+  `}
 
   ${({ theme: { shadow, color, radius } }) => css`
     border: 1px solid ${color.border.base};
     border-radius: ${radius.lg};
     background-color: ${color.background.base};
-    box-shadow: ${shadow.sm};
   `}
 `;

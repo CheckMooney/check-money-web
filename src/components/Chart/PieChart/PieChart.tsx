@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ResponsivePie } from '@nivo/pie';
 import { useGetTotalConsumptionByCategory } from 'services/queries/transaction';
 import { HeaderWrapper, Wrapper, ChartWrapper } from './PieChart.style';
 import Skeleton from 'components/Skeleton/Skeleton';
+import { dateToString } from 'utils/date';
+import { ReactComponent as PieChartIcon } from 'assets/svg/pie-chart.svg';
 
 interface PieChartProps {}
 
 const PieChart: React.FC<PieChartProps> = () => {
-  const { data, isLoading } = useGetTotalConsumptionByCategory('2021-12');
+  const { data, isLoading } = useGetTotalConsumptionByCategory(
+    dateToString(new Date(), 'yyyy-mm'),
+  );
+
+  const heading = useMemo(() => {
+    if (!data) {
+      return '';
+    }
+    const maxConsumption = Math.max(
+      ...data.map(({ totalConsumption }) => totalConsumption),
+    );
+    const maxCategories = data.filter(
+      ({ totalConsumption }) => totalConsumption === maxConsumption,
+    );
+    return maxCategories?.map(({ category }) => category).join(', ');
+  }, [data]);
 
   if (isLoading) {
-    <Wrapper>
-      <Skeleton />
-    </Wrapper>;
+    return (
+      <Wrapper>
+        <Skeleton>
+          <PieChartIcon width={48} height={48} />
+        </Skeleton>
+      </Wrapper>
+    );
   }
 
   return (
     <Wrapper>
       <HeaderWrapper>
-        <h2>이번 달은 기타에 가장 많이 사용하였어요.</h2>
+        <h2>
+          {heading
+            ? `이번 달에 ${heading}에 가장 많이 사용하셨습니다.`
+            : '이번 달 사용내역이 없습니다.'}
+        </h2>
       </HeaderWrapper>
       <ChartWrapper>
         {data && (

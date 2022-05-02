@@ -43,7 +43,7 @@ export function getCurrentDates(currentYear: number, currentMonth: number) {
 export function getPrevDays(date: Date, prev: number) {
   const { year, month, day } = getYearMonthDate(date);
   const prevDays = [];
-  for (let i = 0; i < prev; i++) {
+  for (let i = 1; i <= prev; i++) {
     prevDays.push(
       dateToString(new Date(year, month - 1, day - prev + i), 'yyyy-mm-dd'),
     );

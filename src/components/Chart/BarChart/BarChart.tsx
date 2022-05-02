@@ -10,13 +10,15 @@ import {
 import ToggleButton from 'components/common/ToggleButton/ToggleButton';
 import { useGetTotalConsumption } from 'services/queries/transaction';
 import Skeleton from 'components/Skeleton/Skeleton';
+import { ReactComponent as BarChartIcon } from 'assets/svg/bar-chart.svg';
+import { dateToString } from 'utils/date';
 
 type ChartViewType = 'month' | 'day';
 
 const BarChart = () => {
   const [chartViewType, setChartViewType] = useState<ChartViewType>('day');
   const { data, isLoading } = useGetTotalConsumption(
-    '2021-12-19',
+    dateToString(new Date(), 'yyyy-mm-dd'),
     chartViewType,
   );
 
@@ -32,10 +34,13 @@ const BarChart = () => {
       onClick: () => setChartViewType('day'),
     },
   ];
+
   if (isLoading || !data) {
     return (
       <Wrapper>
-        <Skeleton />
+        <Skeleton>
+          <BarChartIcon width={48} height={48} />
+        </Skeleton>
       </Wrapper>
     );
   }
@@ -48,8 +53,8 @@ const BarChart = () => {
   const chartText = () => {
     if (!data) return '';
     return chartViewType === 'day'
-      ? `하루에 평균 ${Math.ceil(data.chartAverage / 1000)}천원 정도 써요.`
-      : `한 달에 평균 ${Math.ceil(data.chartAverage / 10000)}만원 정도 써요`;
+      ? `하루에 평균 ${Math.round(data.chartAverage / 1000)}천원 정도 써요.`
+      : `한 달에 평균 ${Math.round(data.chartAverage / 10000)}만원 정도 써요`;
   };
 
   return (

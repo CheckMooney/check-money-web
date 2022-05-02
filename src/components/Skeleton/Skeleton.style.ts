@@ -14,12 +14,15 @@ export const SquareSkeleton = styled.div`
   background-image: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.4),
     rgba(255, 255, 255, 0)
   );
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  fill: #ccc;
   background-size: 20% 100%;
   background-repeat: no-repeat;
   background-position: left -20% top 0;
-  animation: ${skeletonAnimation} 1s infinite;
+  animation: ${skeletonAnimation} 1.5s infinite;
 `;
