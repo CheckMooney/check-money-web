@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "체크머니",
+  "name": "체크머니",
   "icons": [
     {
       "src": "favicon.ico",

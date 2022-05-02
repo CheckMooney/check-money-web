@@ -42,7 +42,7 @@ const FindPasswordForm: React.FC<FormProps<FindPasswordSchema>> = ({
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-  } = useForm({
+  } = useForm<FindPasswordSchema>({
     mode: 'onChange',
     resolver: yupResolver(FIND_PASSWORD_SCHEMA),
   });
@@ -83,7 +83,7 @@ const ResetPasswordForm: React.FC<FormProps<ResetPasswordSchema>> = ({
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-  } = useForm({
+  } = useForm<ResetPasswordSchema>({
     mode: 'onChange',
     resolver: yupResolver(RESET_PASSWORD_SCHEMA),
   });

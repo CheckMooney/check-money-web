@@ -10,11 +10,13 @@ import {
   HeaderWrapper,
   Wrapper,
 } from './MonthPage.style';
+import Head from 'components/common/Head/Head';
 
 const MonthPage = () => {
   const { currentDate } = useDate();
   return (
     <ScrollableWrapper>
+      <Head label="월별" />
       <Wrapper>
         <HeaderWrapper>
           <h2>{dateToString(currentDate, 'yyyy년 mm월')}</h2>

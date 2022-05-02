@@ -9,6 +9,7 @@ import {
 } from './AuthFormTemplate.style';
 import { IoAlertCircle } from 'react-icons/io5';
 import { Logo } from '../Logo/Logo';
+import Head from '../Head/Head';
 
 interface AuthFormTemplateProps {
   title: string;
@@ -28,6 +29,7 @@ const AuthFormTemplate: React.FC<AuthFormTemplateProps> = ({
 }) => {
   return (
     <Wrapper>
+      <Head label={title} />
       <HeaderWrapper>
         <Logo />
         <h1>{title}</h1>

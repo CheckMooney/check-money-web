@@ -6,6 +6,7 @@ import TransactionList from 'components/TransactionList/TransactionList';
 import ScrollableWrapper from 'components/common/ScrollableWrapper/ScrollableWrapper';
 import { Wrapper } from './AccountPage.style';
 import SubscriptionList from 'components/SubscriptionList/SubscriptionList';
+import Head from 'components/common/Head/Head';
 
 interface AccountPageParams {
   accountId: string;
@@ -24,16 +25,19 @@ const AccountPage = () => {
   }
 
   return (
-    <ScrollableWrapper>
-      <Wrapper>
-        <TransactionList
-          title={currentAccount.title}
-          description={currentAccount.description}
-          accountId={accountId}
-        />
-        <SubscriptionList accountId={+accountId} />
-      </Wrapper>
-    </ScrollableWrapper>
+    <React.Fragment>
+      <Head label={currentAccount?.title} />
+      <ScrollableWrapper>
+        <Wrapper>
+          <TransactionList
+            title={currentAccount.title}
+            description={currentAccount.description}
+            accountId={accountId}
+          />
+          <SubscriptionList accountId={+accountId} />
+        </Wrapper>
+      </ScrollableWrapper>
+    </React.Fragment>
   );
 };
 

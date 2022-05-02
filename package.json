@@ -1,7 +1,6 @@
 {
   "name": "check-money",
   "version": "0.1.0",
-  "private": true,
   "dependencies": {
     "@hookform/resolvers": "^2.8.3",
     "@nivo/bar": "^0.75.0",
@@ -21,6 +20,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-google-login": "^5.2.2",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.18.1",
     "react-icons": "^4.3.1",
     "react-query": "^3.31.0",
@@ -35,9 +35,7 @@
   "scripts": {
     "start:dev": "react-scripts start",
     "build:dev": "env-cmd -f .env.development react-scripts build && move build ./build_dev",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +56,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8"
+    "@babel/core": "^7.15.8",
+    "@types/react-helmet": "^6.1.5"
+  },
+  "volta": {
+    "node": "16.14.0"
   }
 }

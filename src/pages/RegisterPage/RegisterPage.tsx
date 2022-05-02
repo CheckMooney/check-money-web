@@ -37,7 +37,7 @@ const ConfirmEmailForm = ({
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-  } = useForm({
+  } = useForm<ConfirmEmailSchema>({
     mode: 'onChange',
     resolver: yupResolver(CONFIRM_EMAIL_SCHEMA),
   });
@@ -89,7 +89,7 @@ export const ConfirmCodeForm = ({
     register,
     handleSubmit,
     formState: { errors, isValid, isDirty },
-  } = useForm({
+  } = useForm<ConfirmCodeSchema>({
     mode: 'onChange',
     resolver: yupResolver(CONFIRM_CODE_SCHEMA),
   });
@@ -141,7 +141,7 @@ const RegisterForm = ({
     handleSubmit,
     watch,
     formState: { errors, isValid, isDirty },
-  } = useForm({
+  } = useForm<RegisterSchema>({
     mode: 'onChange',
     resolver: yupResolver(REGISTER_SCHEMA),
   });

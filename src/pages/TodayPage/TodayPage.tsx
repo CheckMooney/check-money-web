@@ -12,6 +12,7 @@ import {
 } from './TodayPage.style';
 import EmptyItem from 'components/common/EmptyItem/EmptyItem';
 import AddTransactionModal from 'components/Modal/AddTransactionModal/AddTransactionModal';
+import Head from 'components/common/Head/Head';
 
 const TodayPage = () => {
   const [showAddTransactionModal, setShowAddTransactionModal] =
@@ -27,6 +28,7 @@ const TodayPage = () => {
 
   return (
     <ScrollableWrapper>
+      <Head label="오늘" />
       <Wrapper>
         <HeaderWrapper>
           <h1>오늘</h1>
