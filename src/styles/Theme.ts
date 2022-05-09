@@ -11,9 +11,9 @@ export const defaultTheme = {
       dark: '#000',
     },
     primary: {
-      light: '#1B17FF',
-      base: '#1613D1',
-      dark: '#120FB7',
+      light: 'rgb(0, 72, 255)',
+      base: 'rgb(0, 57, 236)',
+      dark: 'rgb(0, 40, 200)',
     },
     border: {
       light: '#f7f7f7',
@@ -35,7 +35,8 @@ export const defaultTheme = {
     lg: '0 2px 6px 0 rgba(0,0,0,0.20)',
     xl: '0px 4px 64px rgba(0,0,0,0.35)',
     hover: '0 6px 24px 0px rgba(0,0,0,0.20)',
-    focus: '0 0 0 1px #1613D1',
+    focus: '0 0 0 1px rgb(0, 57, 236)',
+    card: '0px 8px 32px 0px rgba(0, 0, 0, 0.2)',
   },
   radius: {
     sm: '0.125rem',

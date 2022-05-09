@@ -46,11 +46,8 @@ export const FlexWrapper = styled.div`
 
 export const ChartWrapper = styled.div`
   width: 100%;
-  height: 30rem;
-
-  ${setTabletMediaQuery`
-    height: 25rem;
-  `}
+  height: auto;
+  aspect-ratio: 1/1;
 
   ${({ theme: { shadow, color, radius } }) => css`
     border: 1px solid ${color.border.base};
